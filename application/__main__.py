@@ -2,9 +2,12 @@
 
 from openai import OpenAI
 import openai
-import os
+from constants import API_KEY
+import time
 
-openai.api_key = "INSERT API KEY HERE"
+
+openai.api_key = API_KEY # NOTE: Change this API_KEY to you own as the original key is stored safely elsewhere. 
+
 client = OpenAI(api_key=openai.api_key)
 
 class LanguageToGraph:
@@ -70,7 +73,7 @@ class LanguageToGraph:
         completion = client.chat.completions.create(
             model=self.model,
             messages=[
-                {"role": "system", "content": "Du er en assistent trent til å gjennomføre Named Entity Recognition-oppgaver"},
+                {"role": "system", "content": "Du er en assistent trent til å gjennomføre Named Entity Recognition-oppgaver for Knowledge Graphs"},
                 {
                     "role": "user",
                     "content": (
@@ -93,7 +96,7 @@ class LanguageToGraph:
         completion = client.chat.completions.create(
             model=self.model,
             messages=[
-                {"role": "system", "content": "Du er en assistent trent til å gjennomføre Named Relation Extraction-oppgaver"},
+                {"role": "system", "content": "Du er en assistent trent til å gjennomføre Named Relation Extraction-oppgaver for Kunnskapsgrafer med ontolgier. Kunnskapsgrafene bør være konsekvent."},
                 {
                     "role": "user",
                     "content": (
@@ -114,6 +117,7 @@ class LanguageToGraph:
         knowledge_graphs = []
         
         for i, message in enumerate(messages):
+            time.sleep(1)
             print("-------------------------------------------")
             print(message, "\n")
 
@@ -134,7 +138,7 @@ class LanguageToGraph:
 
 
 
-ltg = LanguageToGraph(model="gpt-4", api_key=openai.api_key)
+ltg = LanguageToGraph(api_key=openai.api_key)
 directory_path = "trafikktekster-20240814.txt"
 messages = ltg.load_msg(directory_path)
 
