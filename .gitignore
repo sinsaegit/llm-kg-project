@@ -1,0 +1,16 @@
+# Ignore Python virtual environments
+.venv/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore other common files
+.DS_Store
+*.log
+*.env
+
+# Optional: Ignore IDE-specific settings (VS Code example)
+.vscode/
+
+application/constants.py
