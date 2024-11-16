@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Application</title>
+    <!-- Correct linking to static CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+</head>
+<body>
+    <button class="open-menu-btn" onclick="openMenu()">☰ Menu</button>
+
+    <div class="main-container">
+        <div class="container prompt-section">
+            <h1>Enter Your Prompt</h1>
+            <div class="input-group">
+                <label for="prompt-input">Prompt Input:</label>
+                <input type="text" id="prompt-input" placeholder="Type your prompt here (I work best with politiloggen)...">
+                <button onclick="submitPrompt()">Submit</button>
+            </div>
+            <div class="output" id="prompt-output">
+                <!-- Result will be displayed here -->
+            </div>
+        </div>
+    
+        <div class="container file-upload-section">
+            <h1>Upload Text File</h1>
+            <label for="file-upload">Select a file:</label>
+            <input type="file" id="file-upload" accept=".txt">
+            <button class="upload-button" onclick="uploadFile()">Upload</button>
+    
+            <!-- Progress bar -->
+            <div id="progress-container">
+                <progress id="progress-bar" value="0" max="100"></progress>
+                <span id="progress-text"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sliding Menu -->
+    <div id="menu" class="menu">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+        <a href="javascript:void(0)" onclick="openAbout()">About</a>
+    </div>
+
+    <!-- Modal About Menu -->
+    <div id="about-modal" class="modal">
+        <div class="about-modal-content">
+            <h2>About This Application</h2>
+            <p>This application was created by [USER]. You are permitted to use it and copy it as you please, but please do not take credit for it. Thank you.
+                <br><br>
+                Here's how to use the application:</p>
+            <ul class="menu-about">
+                <li>Hei</li>
+                <li>Hå</li>
+                <li>Skjera</li>
+            </ul>
+            <button class="close-modal-btn" onclick="closeAbout()">Close</button>
+        </div>
+    </div>
+
+    <!-- Correct linking to static JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

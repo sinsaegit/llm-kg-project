@@ -1,0 +1,328 @@
+24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet. 
+
+24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): Politiet er på stedet. En bil trenger tauing. Bilberger er på vei.
+
+24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): Bilen er fjernet. Politiet har avsluttet på stedet.
+
+24mr50 (Kalvedalsveien, Bergen, 2024-08-14T03:42:22.4156458+00:00): Kl. 0403: melding frå ein forbipasserande bilist om ein kollisjonsskadd bil som stod midt i vegbanen i Kalvedalsveien. Ingen personar i eller ved bilen. Etter litt undersøkingar, kom politiet i kontakt med ein mann i nærleiken som truleg skal ha køyrt bilen. Han verka rusa. Vart køyrde til legevakt for blodprøve. Bilen vart fjerna av bilberger og vegen er no open for fri ferdsel. Politiet opprettar sak.
+
+245jjc (, Bergen, 2024-08-13T16:56:59.5278312+00:00): Ytrebygdsvegen kl 1736: vi får inn flere 112 telefoner om en dame som går i veien. Vi har patruljer på vei til stedet.
+
+245jjc (, Bergen, 2024-08-13T16:56:59.5278312+00:00): Politiet er på stedet og har kontroll på kvinnen.
+
+245jjc (, Bergen, 2024-08-13T16:56:59.5278312+00:00): Politiet er ferdig på stedet. Kvinne ble overtatt av helsevesenet.
+
+24rksz (Folke Bernadottes Vei     Fyllingsdalen, Bergen, 2024-08-13T12:32:16.2608778+00:00): Kl. 1426: Mann påkjørt av lastebil. Pasient våken og bevisst og blir ivaretatt av personer på stedet. Ligger på bakken. Ukjent vedr. evt. personskader. Skjedd i/ved fotgjengerfelt. Politi er på staden. Ambulanse på veg. 
+
+24rksz (Folke Bernadottes Vei     Fyllingsdalen, Bergen, 2024-08-13T12:32:16.2608778+00:00): Pasient har et kutt i ansiktet. I dialog med personer på stedet. Mannen var fotgjenger.
+
+24rksz (Folke Bernadottes Vei     Fyllingsdalen, Bergen, 2024-08-13T12:32:16.2608778+00:00): Pasienten er tatt inn i ambulansen. Noe stans i trafikken på stedet i dette øyeblikk.
+
+24rksz (Folke Bernadottes Vei     Fyllingsdalen, Bergen, 2024-08-13T12:32:16.2608778+00:00): Lastebilen blitt flyttet ut av vegen. Vegen åpnes opp igjen. Pasienten blir tatt med til Haukeland universitetssykehus.
+
+24rksz (Folke Bernadottes Vei     Fyllingsdalen, Bergen, 2024-08-13T12:32:16.2608778+00:00): Politi i dialog med evt. vitner (inkl. melder) og sjåfør av lastebil (sistnevnte mann i 40-årene).
+
+240s1r (Hjellestad, Bergen, 2024-08-13T09:52:01.1015929+00:00): Kl. 1045-1145: Utrykningspolitiet gjennomført fartskontroll i 50-sone.  4 forenklede forelegg. Høyeste hastighet målt til 63 km/t. I tillegg ble en bilfører (mann i 40-årene) tatt med til legevakt for blodprøve. Mist. for å ha vært ruspåvirket under kjøring. Beslag av førerkort. 
+
+2463kq (Hovdetunellen, Høyanger, 2024-08-12T15:35:46.1414565+00:00): Lokalt politi har gjennomført laserkontroll.  10 forenklede forelegg for hastighet.
+
+24d4r9 (Laksevåg, Bergen, 2024-08-12T12:40:24.4368142+00:00): Politiet fikk kl 14:06 melding om uvettig kjøring i området  Smiberget.  Patrulje har nå stanset bilen området Laksevåg, kontroll på fører. fremstår beruset.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T05:29:55.7305736+00:00): Kl. 0717: politiet rykkjer ut etter melding om ei singelulykke. Ein bil skal ha køyrt i ein mur på staden. Førar er ute av bilen. Det går føre seg manuell dirigering på staden.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T05:29:55.7305736+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T05:29:55.7305736+00:00): Politiet er ferdig på staden. Bil er henta av bilberger. Førar oppsøkjer legevakt sjølv, dersom han har behov for dette. Politiet opprettar sak.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Kl. 0717: politiet rykkjer ut etter melding om ei singelulykke. Ein bil skal ha køyrt i ein mur på staden. Førar er ute av bilen. Det går føre seg manuell dirigering på staden.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Politiet er ferdig på staden. Bil er henta av bilberger. Førar oppsøkjer legevakt sjølv, dersom han har behov for dette. Politiet opprettar sak.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T06:16:30.4815957+00:00): Kl. 0717: politiet rykkjer ut etter melding om ei singelulykke. Ein bil skal ha køyrt i ein mur på staden. Førar er ute av bilen. Det går føre seg manuell dirigering på staden.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T06:16:30.4815957+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.
+
+24b43w (Follesevegen, Askøy, 2024-08-12T06:16:30.4815957+00:00): Politiet er ferdig på staden. Bil er henta av bilberger. Førar oppsøkjer legevakt sjølv, dersom han har behov for dette. Politiet opprettar sak.
+
+24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet. 
+
+24zlxt (Rosendal, Kvinnherad, 2024-08-10T22:24:54.0988354+00:00): kl 2325. Patrulje stanset en bil der fører mistenkes for kjøring i beruset tilstand. 
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T11:42:41.3756642+00:00): Kl. 13:17 Trafikkulykke. Ein bil har køyrd i fjellveggen inne i  Svandalsflottunnelen. Det skal være to personar i bilen, og begge er oppegåande. Samtlege naudetatar er på veg mot staden.  
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T11:42:41.3756642+00:00): Kl.13:47 - melder brannvesen på staden at begge involverte hevder seg uskadd.
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T11:42:41.3756642+00:00): Fører og passasjer fraktet til legevakt/Odda. Ingen mistanke om kjøring i påvirket tilstand. Skadestedet er ryddet. Tunnelen åpnes for fri ferdsel.
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T11:52:12.1421746+00:00): Kl. 13:17 Trafikkulykke. Ein bil har køyrd i fjellveggen inne i  Svandalsflottunnelen. Det skal være to personar i bilen, og begge er oppegåande. Samtlege naudetatar er på veg mot staden.  
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T11:52:12.1421746+00:00): Kl.13:47 - melder brannvesen på staden at begge involverte hevder seg uskadd.
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T11:52:12.1421746+00:00): Fører og passasjer fraktet til legevakt/Odda. Ingen mistanke om kjøring i påvirket tilstand. Skadestedet er ryddet. Tunnelen åpnes for fri ferdsel.
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T13:53:18.6578301+00:00): Kl. 13:17 Trafikkulykke. Ein bil har køyrd i fjellveggen inne i  Svandalsflottunnelen. Det skal være to personar i bilen, og begge er oppegåande. Samtlege naudetatar er på veg mot staden.  
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T13:53:18.6578301+00:00): Kl.13:47 - melder brannvesen på staden at begge involverte hevder seg uskadd.
+
+2472hb (Haukeli, Ullensvang, 2024-08-10T13:53:18.6578301+00:00): Fører og passasjer fraktet til legevakt/Odda. Ingen mistanke om kjøring i påvirket tilstand. Skadestedet er ryddet. Tunnelen åpnes for fri ferdsel.
+
+24r234 (Fjøsangerveien, Bergen, 2024-08-09T21:48:29.2867782+00:00): kl 2336: Patrulje kom over trafikkulykke.  2 biler involvert, totalt 4 personer.  alle våkne og bevisst. 1 person med smerter i hodet. Ambulanse rykker også ut.
+
+243htq (Dokken, Bergen, 2024-08-09T09:10:51.770755+00:00): kl 1028: UP-patrulje stanset lastebil. Mistanke promillekjøring. Fører tatt med til blodprøve.
+
+244bz3 (Fløyfjellstunnelen, Bergen, 2024-08-09T06:01:40.0949213+00:00): kl 0751: Fløyfjellstunnelen nordgåande stengt etter melding om røyk frå lastebil. Me er no framme. Røyk frå bremsar, bilen er no ute av tunnelen.
+
+244bz3 (Fløyfjellstunnelen, Bergen, 2024-08-09T06:01:40.0949213+00:00): Tunnelen er no opna.
+
+244bz3 (Fløyfjellstunnelen, Bergen, 2024-08-09T06:03:17.0050655+00:00): kl 0751: Fløyfjellstunnelen nordgåande stengt etter melding om røyk frå lastebil. Me er no framme. Røyk frå bremsar, bilen er no ute av tunnelen.
+
+244bz3 (Fløyfjellstunnelen, Bergen, 2024-08-09T06:03:17.0050655+00:00): Tunnelen er no opna.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T13:50:00.3744674+00:00): Melding om trafikkulykke. E-16 ved avkjørsel Ytre Arna. 2 biler involvert. 1 person i hver bil. Trolig møteulykke ifm at 1 bil skulle svinge ned mot Ytre Arna. Trafikale utfordringer, Nødetatene på vei til stedet.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T13:50:00.3744674+00:00): Mindre skader på bilene. Flyttes ut av veibanen nå. Trafikken vil straks flyte som normalt.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T13:50:00.3744674+00:00): Ingen personskade. partene fyller ut skademelding.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T13:55:23.6451645+00:00): Melding om trafikkulykke. E-16 ved avkjørsel Ytre Arna. 2 biler involvert. 1 person i hver bil. Trolig møteulykke ifm at 1 bil skulle svinge ned mot Ytre Arna. Trafikale utfordringer, Nødetatene på vei til stedet.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T13:55:23.6451645+00:00): Mindre skader på bilene. Flyttes ut av veibanen nå. Trafikken vil straks flyte som normalt.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T13:55:23.6451645+00:00): Ingen personskade. partene fyller ut skademelding.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T14:29:32.5229016+00:00): Melding om trafikkulykke. E-16 ved avkjørsel Ytre Arna. 2 biler involvert. 1 person i hver bil. Trolig møteulykke ifm at 1 bil skulle svinge ned mot Ytre Arna. Trafikale utfordringer, Nødetatene på vei til stedet.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T14:29:32.5229016+00:00): Mindre skader på bilene. Flyttes ut av veibanen nå. Trafikken vil straks flyte som normalt.
+
+249ptp (E-16 Ved Ytre-Arna, Bergen, 2024-08-08T14:29:32.5229016+00:00): Ingen personskade. partene fyller ut skademelding.
+
+24lgvg (Strusshamn, Skarholmvegen, Askøy, 2024-08-08T13:40:31.3041229+00:00): Melding om trafikkulykke.  en bil involvert. har kjørt over ett gjerde og ned i en skog. Fører ute av bilen, våken men med smerter. Nødetatene på vei til stedet.
+
+24tpgv (Torget, Bergen, 2024-08-08T00:08:21.0157682+00:00): Kl 0120 stansa stansa UP bil for kontroll på Vetrlidsallmenningen. Førar hadde ikkje gyldig førarkort og det er mistanke om ruskøyring. Vart teke med inn for bevissikring og sak blir oppretta.
+
+246cht (Frekhaug, Alver, 2024-08-07T02:45:55.005783+00:00): Kl. 0049: Patrulje stanset personbil etter egen observasjon på kjøringen. Bilfører, kvinne i 30-årene, mistenkt for å ha vært ruspåvirket under kjøring. Brakt til lokal legevakt for blodprøvetaking. Politiet tok også beslag i kvinnens bil, da hun hadde blitt stanset på lignende vis for kort tid siden. 
+
+24bd06 (Kinsarvik, Ullensvang, 2024-08-06T16:31:04.7675902+00:00): kl 1817: Me er på veg fram etter melding om trafikkuhell.  Bil køyrt av vegen. Opplyst til å ikkje vera personskade. Trafikale problem.
+
+24c73c (Askvegen, Askøy, 2024-08-06T15:10:49.0621083+00:00): kl 1701: me er på veg saman med ambulanse etter melding om kollisjon/samanstøyt mellom ein rullestol og ein motorsykkel. Begge involverte er vakne.
+
+24c73c (Askvegen, Askøy, 2024-08-06T15:10:49.0621083+00:00): Har ikkje vore ei trafikkulykke. Rullestol har velta, motorsyklist stansa for å hjelpa vedkommande.
+
+24c73c (Askvegen, Askøy, 2024-08-06T15:13:52.9611937+00:00): kl 1701: me er på veg saman med ambulanse etter melding om kollisjon/samanstøyt mellom ein rullestol og ein motorsykkel. Begge involverte er vakne.
+
+24c73c (Askvegen, Askøy, 2024-08-06T15:13:52.9611937+00:00): Har ikkje vore ei trafikkulykke. Rullestol har velta, motorsyklist stansa for å hjelpa vedkommande.
+
+24l96q (Åsane Senter, Bergen, 2024-08-05T15:18:29.2083599+00:00): kl 1700: Me er på staden etter at ein bil har hamna på vippen på ein murkant.
+
+244x89 (Sunndalsvegen, Kvinnherad, 2024-08-05T14:26:18.4386932+00:00): kl 1602: Me er på veg saman med ambulanse etter melding om trafikkulykke. Singelulykke, ein MC har sklidd og kollidert med autovern. Førar vaken og medviten.
+
+2471q2 (Håvik, Kvinnherad, 2024-08-05T09:41:00.7438123+00:00): To biler er involvert i trafikkulykke. Ikke meldt om personskade.  Alle involverte personer er ute av bilene.
+
+2471q2 (Håvik, Kvinnherad, 2024-08-05T09:41:00.7438123+00:00): Veien er åpen og trafikken går greit forbi ulykkesstedet.
+
+2471q2 (Håvik, Kvinnherad, 2024-08-05T09:42:43.3049648+00:00): To biler er involvert i trafikkulykke. Ikke meldt om personskade.  Alle involverte personer er ute av bilene.
+
+2471q2 (Håvik, Kvinnherad, 2024-08-05T09:42:43.3049648+00:00): Veien er åpen og trafikken går greit forbi ulykkesstedet.
+
+24pscg (Arefjordvegen, Øygarden, 2024-08-04T14:23:19.3754656+00:00): kl. 15.28: Melding om personbil som kjørte inn i bil i Arefjordvegen og stakk fra stedet. Deretter kollidert flere steder sørover langs Arefjordvegen.  Politiet fikk kontroll på fører i krysset Brattholmen. Totalt tre trafikkulykker og materiell skade på flere kjøretøy. Fører av personbilen som stakk fra stedet er kjørt til traumemottaket på Haukeland Universitetssykehus. Våken, ellers ukjent skadeomfang. Ikke meldt om personskade på andre personer. 
+
+24pscg (Arefjordvegen, Øygarden, 2024-08-04T14:23:19.3754656+00:00): Politiet ønsker kontakt med vitner til hendelsen, og spesielt fører av en hvit Volvo stasjonsvogn som skal ha vært i Arefjordvegen på det aktuelle tidspunktet. Tips: Ring tlf. 02800.
+
+24pscg (Arefjordvegen, Øygarden, 2024-08-04T14:39:03.7703281+00:00): kl. 15.28: Melding om personbil som kjørte inn i bil i Arefjordvegen og stakk fra stedet. Deretter kollidert flere steder sørover langs Arefjordvegen.  Politiet fikk kontroll på fører i krysset Brattholmen. Totalt tre trafikkulykker og materiell skade på flere kjøretøy. Fører av personbilen som stakk fra stedet er kjørt til traumemottaket på Haukeland Universitetssykehus. Våken, ellers ukjent skadeomfang. Ikke meldt om personskade på andre personer. 
+
+24pscg (Arefjordvegen, Øygarden, 2024-08-04T14:39:03.7703281+00:00): Politiet ønsker kontakt med vitner til hendelsen, og spesielt fører av en hvit Volvo stasjonsvogn som skal ha vært i Arefjordvegen på det aktuelle tidspunktet. Tips: Ring tlf. 02800.
+
+24qmgw (Wergeland, Bergen, 2024-08-04T12:14:04.7814463+00:00): Kl 1408 meldt om bil som har trilla ut i Tveitevannet. Det er ikkje folk i bilen og den står på grunt vatn. Politiet er på veg til staden.
+
+24qmgw (Wergeland, Bergen, 2024-08-04T12:14:04.7814463+00:00): Patrulje er på staden. Kupeen er over vatn, ingen inne i bilen. Me er i kontakt med bileigar som er på staden. Bilen har vorte parkert på bensinstasjon like ved og såg trillet ut i vatnet. Behov for bilberger for å trekkja opp bilen.
+
+24qmgw (Wergeland, Bergen, 2024-08-04T12:21:53.7076779+00:00): Kl 1408 meldt om bil som har trilla ut i Tveitevannet. Det er ikkje folk i bilen og den står på grunt vatn. Politiet er på veg til staden.
+
+24qmgw (Wergeland, Bergen, 2024-08-04T12:21:53.7076779+00:00): Patrulje er på staden. Kupeen er over vatn, ingen inne i bilen. Me er i kontakt med bileigar som er på staden. Bilen har vorte parkert på bensinstasjon like ved og såg trillet ut i vatnet. Behov for bilberger for å trekkja opp bilen.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:08:16.4194594+00:00): Kl 1003 meldt om trafikkulykke, front-mot-front,  på E16 Blindheimsveien, før rundkøyring i Vågsbotn. 7 personar involverte, alle vaken og medviten. Nødetatane rykkjer ut til staden.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:08:16.4194594+00:00): Store trafikale problemer, trafikken står.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:08:16.4194594+00:00): Politiet er framme - alle involverte er vaken og medviten. Ingen av bilane er farbare og bilberger blir rekvirert. Vegen er pr no stengd, blir jobba med å opna for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:08:16.4194594+00:00): Det er nå åpnet for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:08:16.4194594+00:00): Bilberger er no på staden, opprydding pågår.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:08:16.4194594+00:00): Bilane er fjerna. Mesta er på staden og må vurdera forholda før det kan opnast. Det er ein god del oljesøl.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:08:16.4194594+00:00): Vegen er no opna igjen for normal trafikk.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:09:34.8320222+00:00): Kl 1003 meldt om trafikkulykke, front-mot-front,  på E16 Blindheimsveien, før rundkøyring i Vågsbotn. 7 personar involverte, alle vaken og medviten. Nødetatane rykkjer ut til staden.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:09:34.8320222+00:00): Store trafikale problemer, trafikken står.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:09:34.8320222+00:00): Politiet er framme - alle involverte er vaken og medviten. Ingen av bilane er farbare og bilberger blir rekvirert. Vegen er pr no stengd, blir jobba med å opna for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:09:34.8320222+00:00): Det er nå åpnet for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:09:34.8320222+00:00): Bilberger er no på staden, opprydding pågår.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:09:34.8320222+00:00): Bilane er fjerna. Mesta er på staden og må vurdera forholda før det kan opnast. Det er ein god del oljesøl.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:09:34.8320222+00:00): Vegen er no opna igjen for normal trafikk.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:19:36.4597361+00:00): Kl 1003 meldt om trafikkulykke, front-mot-front,  på E16 Blindheimsveien, før rundkøyring i Vågsbotn. 7 personar involverte, alle vaken og medviten. Nødetatane rykkjer ut til staden.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:19:36.4597361+00:00): Store trafikale problemer, trafikken står.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:19:36.4597361+00:00): Politiet er framme - alle involverte er vaken og medviten. Ingen av bilane er farbare og bilberger blir rekvirert. Vegen er pr no stengd, blir jobba med å opna for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:19:36.4597361+00:00): Det er nå åpnet for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:19:36.4597361+00:00): Bilberger er no på staden, opprydding pågår.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:19:36.4597361+00:00): Bilane er fjerna. Mesta er på staden og må vurdera forholda før det kan opnast. Det er ein god del oljesøl.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:19:36.4597361+00:00): Vegen er no opna igjen for normal trafikk.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:39:24.9218295+00:00): Kl 1003 meldt om trafikkulykke, front-mot-front,  på E16 Blindheimsveien, før rundkøyring i Vågsbotn. 7 personar involverte, alle vaken og medviten. Nødetatane rykkjer ut til staden.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:39:24.9218295+00:00): Store trafikale problemer, trafikken står.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:39:24.9218295+00:00): Politiet er framme - alle involverte er vaken og medviten. Ingen av bilane er farbare og bilberger blir rekvirert. Vegen er pr no stengd, blir jobba med å opna for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:39:24.9218295+00:00): Det er nå åpnet for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:39:24.9218295+00:00): Bilberger er no på staden, opprydding pågår.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:39:24.9218295+00:00): Bilane er fjerna. Mesta er på staden og må vurdera forholda før det kan opnast. Det er ein god del oljesøl.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:39:24.9218295+00:00): Vegen er no opna igjen for normal trafikk.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:47:36.021022+00:00): Kl 1003 meldt om trafikkulykke, front-mot-front,  på E16 Blindheimsveien, før rundkøyring i Vågsbotn. 7 personar involverte, alle vaken og medviten. Nødetatane rykkjer ut til staden.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:47:36.021022+00:00): Store trafikale problemer, trafikken står.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:47:36.021022+00:00): Politiet er framme - alle involverte er vaken og medviten. Ingen av bilane er farbare og bilberger blir rekvirert. Vegen er pr no stengd, blir jobba med å opna for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:47:36.021022+00:00): Det er nå åpnet for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:47:36.021022+00:00): Bilberger er no på staden, opprydding pågår.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:47:36.021022+00:00): Bilane er fjerna. Mesta er på staden og må vurdera forholda før det kan opnast. Det er ein god del oljesøl.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:47:36.021022+00:00): Vegen er no opna igjen for normal trafikk.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:58:43.5426261+00:00): Kl 1003 meldt om trafikkulykke, front-mot-front,  på E16 Blindheimsveien, før rundkøyring i Vågsbotn. 7 personar involverte, alle vaken og medviten. Nødetatane rykkjer ut til staden.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:58:43.5426261+00:00): Store trafikale problemer, trafikken står.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:58:43.5426261+00:00): Politiet er framme - alle involverte er vaken og medviten. Ingen av bilane er farbare og bilberger blir rekvirert. Vegen er pr no stengd, blir jobba med å opna for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:58:43.5426261+00:00): Det er nå åpnet for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:58:43.5426261+00:00): Bilberger er no på staden, opprydding pågår.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:58:43.5426261+00:00): Bilane er fjerna. Mesta er på staden og må vurdera forholda før det kan opnast. Det er ein god del oljesøl.
+
+24zm7g (Åsane, Bergen, 2024-08-04T08:58:43.5426261+00:00): Vegen er no opna igjen for normal trafikk.
+
+24zm7g (Åsane, Bergen, 2024-08-04T09:48:49.2548579+00:00): Kl 1003 meldt om trafikkulykke, front-mot-front,  på E16 Blindheimsveien, før rundkøyring i Vågsbotn. 7 personar involverte, alle vaken og medviten. Nødetatane rykkjer ut til staden.
+
+24zm7g (Åsane, Bergen, 2024-08-04T09:48:49.2548579+00:00): Store trafikale problemer, trafikken står.
+
+24zm7g (Åsane, Bergen, 2024-08-04T09:48:49.2548579+00:00): Politiet er framme - alle involverte er vaken og medviten. Ingen av bilane er farbare og bilberger blir rekvirert. Vegen er pr no stengd, blir jobba med å opna for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T09:48:49.2548579+00:00): Det er nå åpnet for manuell dirigering.
+
+24zm7g (Åsane, Bergen, 2024-08-04T09:48:49.2548579+00:00): Bilberger er no på staden, opprydding pågår.
+
+24zm7g (Åsane, Bergen, 2024-08-04T09:48:49.2548579+00:00): Bilane er fjerna. Mesta er på staden og må vurdera forholda før det kan opnast. Det er ein god del oljesøl.
+
+24zm7g (Åsane, Bergen, 2024-08-04T09:48:49.2548579+00:00): Vegen er no opna igjen for normal trafikk.
+
+24scpn (Nordnes, Bergen, 2024-08-04T07:30:45.9227514+00:00): Kl 0920 meldt om trafikkuhell i C. Sundts gate. Ein buss har køyrt inn i ein parkert bil.  Ikkje personskade. Politiet er på staden og undersøkjer omstenda nærare. Partane er på staden.
+
+24scpn (Nordnes, Bergen, 2024-08-04T07:30:45.9227514+00:00): Vi har avlsuttet på staden. Ingen politisak.
+
+24scpn (Nordnes, Bergen, 2024-08-04T07:49:21.8210179+00:00): Kl 0920 meldt om trafikkuhell i C. Sundts gate. Ein buss har køyrt inn i ein parkert bil.  Ikkje personskade. Politiet er på staden og undersøkjer omstenda nærare. Partane er på staden.
+
+24scpn (Nordnes, Bergen, 2024-08-04T07:49:21.8210179+00:00): Vi har avlsuttet på staden. Ingen politisak.
+
+240qv1 (Nøstegaten, Bergen, 2024-08-04T02:51:19.9918418+00:00): Bil køyrt av vegen. Førar verkar rusa. Politiet på staden.
+
+240qv1 (Nøstegaten, Bergen, 2024-08-04T02:51:19.9918418+00:00): Bil henta av bilbergar. Politiet opprettar sak.
+
+240qv1 (Nøstegaten, Bergen, 2024-08-04T02:52:27.2559066+00:00): Bil køyrt av vegen. Førar verkar rusa. Politiet på staden.
+
+240qv1 (Nøstegaten, Bergen, 2024-08-04T02:52:27.2559066+00:00): Bil henta av bilbergar. Politiet opprettar sak.
+
+24dv2j (Vøringsfoss, Eidfjord, 2024-08-03T09:20:38.310531+00:00): Kl 1113 er det meldt om eit trafikkuhell mellom 2 personbilar på RV7 ved Vøringsfossen. Det skal ikkje vera personskade. Politiet er på veg til staden for å undersøkja nærare. Bilane står utanfor vegbanen så trafikken skal gå forbi.
+
+24dv2j (Vøringsfoss, Eidfjord, 2024-08-03T09:20:38.310531+00:00): Politiet er på staden, berre mindre matrielle skadar etter ein samanstøyt mellom 2 personbilar. 3 personar involverte i uhellet, alle uskadd, ikkje mistanke om rus. Blir ikkje politisak, partane fyller ut skademelding.
+
+24dv2j (Vøringsfoss, Eidfjord, 2024-08-03T09:34:06.5511717+00:00): Kl 1113 er det meldt om eit trafikkuhell mellom 2 personbilar på RV7 ved Vøringsfossen. Det skal ikkje vera personskade. Politiet er på veg til staden for å undersøkja nærare. Bilane står utanfor vegbanen så trafikken skal gå forbi.
+
+24dv2j (Vøringsfoss, Eidfjord, 2024-08-03T09:34:06.5511717+00:00): Politiet er på staden, berre mindre matrielle skadar etter ein samanstøyt mellom 2 personbilar. 3 personar involverte i uhellet, alle uskadd, ikkje mistanke om rus. Blir ikkje politisak, partane fyller ut skademelding.
+
+24hphr (Hordvik, Bergen, 2024-08-02T09:33:46.5522753+00:00): Kl 1121 meldt om bubil med stand i Hordviktunnelen. VTS er varsla og tunnelen er stengd. Politiet er på staden. Bubilen har punktert.
+
+24hphr (Hordvik, Bergen, 2024-08-02T09:33:46.5522753+00:00): Bilen er fjerna og vegen open for fri ferdsel.
+
+24hphr (Hordvik, Bergen, 2024-08-02T11:03:22.0175345+00:00): Kl 1121 meldt om bubil med stand i Hordviktunnelen. VTS er varsla og tunnelen er stengd. Politiet er på staden. Bubilen har punktert.
+
+24hphr (Hordvik, Bergen, 2024-08-02T11:03:22.0175345+00:00): Bilen er fjerna og vegen open for fri ferdsel.
+
+24f7mb (Måna, Stad, 2024-08-02T06:00:26.6265091+00:00): Kl 0755 meldt om trafikulykke på FV5746 Torheimsvegen ved Notaberget. Ein bil har køyrt i autovernet og ligg no i grøfta. Fører åleine i bilen, er vaken og medviten. Passasje forbi staden, politiet er på veg.
+
+24f7mb (Måna, Stad, 2024-08-02T06:00:26.6265091+00:00): Politi og ambulanse er framme på staden. Førar får helsetilsyn og patrulje gjer undersøkingar på staden.
+
+24f7mb (Måna, Stad, 2024-08-02T06:00:26.6265091+00:00): Førar av bilen er henta av luftambulanse og floge til Førde sjukehus.
+
+24f7mb (Måna, Stad, 2024-08-02T06:16:21.9018294+00:00): Kl 0755 meldt om trafikulykke på FV5746 Torheimsvegen ved Notaberget. Ein bil har køyrt i autovernet og ligg no i grøfta. Fører åleine i bilen, er vaken og medviten. Passasje forbi staden, politiet er på veg.
+
+24f7mb (Måna, Stad, 2024-08-02T06:16:21.9018294+00:00): Politi og ambulanse er framme på staden. Førar får helsetilsyn og patrulje gjer undersøkingar på staden.
+
+24f7mb (Måna, Stad, 2024-08-02T06:16:21.9018294+00:00): Førar av bilen er henta av luftambulanse og floge til Førde sjukehus.
+
+24f7mb (Måna, Stad, 2024-08-02T07:09:03.7684661+00:00): Kl 0755 meldt om trafikulykke på FV5746 Torheimsvegen ved Notaberget. Ein bil har køyrt i autovernet og ligg no i grøfta. Fører åleine i bilen, er vaken og medviten. Passasje forbi staden, politiet er på veg.
+
+24f7mb (Måna, Stad, 2024-08-02T07:09:03.7684661+00:00): Politi og ambulanse er framme på staden. Førar får helsetilsyn og patrulje gjer undersøkingar på staden.
+
+24f7mb (Måna, Stad, 2024-08-02T07:09:03.7684661+00:00): Førar av bilen er henta av luftambulanse og floge til Førde sjukehus.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T04:12:01.5688947+00:00): Meldt om bil som har kjørt i fjellveggen. Fører er ute av bilen, er oppegående og bevisst. Er passasje på stedet.  Politi og ambulanse på vei.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T04:12:01.5688947+00:00): Politiet er framme på staden saman med ambulanse. Mindre skader på køyretøy og fører rekna som uskadd.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T04:12:01.5688947+00:00): Bilen er fjerna og politiet er ferdig på staden. Saka er avslutta frå politiet si side.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T05:01:54.9071205+00:00): Meldt om bil som har kjørt i fjellveggen. Fører er ute av bilen, er oppegående og bevisst. Er passasje på stedet.  Politi og ambulanse på vei.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T05:01:54.9071205+00:00): Politiet er framme på staden saman med ambulanse. Mindre skader på køyretøy og fører rekna som uskadd.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T05:01:54.9071205+00:00): Bilen er fjerna og politiet er ferdig på staden. Saka er avslutta frå politiet si side.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T05:53:16.9585807+00:00): Meldt om bil som har kjørt i fjellveggen. Fører er ute av bilen, er oppegående og bevisst. Er passasje på stedet.  Politi og ambulanse på vei.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T05:53:16.9585807+00:00): Politiet er framme på staden saman med ambulanse. Mindre skader på køyretøy og fører rekna som uskadd.
+
+24nrnb (Eikelandsosen, Bjørnafjorden, 2024-08-02T05:53:16.9585807+00:00): Bilen er fjerna og politiet er ferdig på staden. Saka er avslutta frå politiet si side.
+
+24pg7p (, Bergen, 2024-08-01T15:38:43.1230285+00:00): KL. 17.34: Melding om trafikkulykke i Fløyfjelltunnelen sørgående retning. MC kjørt inn i personbil. Alle involverte våken, ellers ukjent skadeomfang. Nødetatene rykker ut. 
+
+24pg7p (, Bergen, 2024-08-01T15:38:43.1230285+00:00): kl. 18.00: Fører av MC kjørt med ambulanse til Haukeland Universitetssykehus. Tunnelen er for øyeblikket helt stengt. Politiet jobber for å fjerne MC og åpne veien så raskt som mulig. Bilberger er på vei.
+
+24pg7p (, Bergen, 2024-08-01T16:02:33.4590203+00:00): KL. 17.34: Melding om trafikkulykke i Fløyfjelltunnelen sørgående retning. MC kjørt inn i personbil. Alle involverte våken, ellers ukjent skadeomfang. Nødetatene rykker ut. 
+
+24pg7p (, Bergen, 2024-08-01T16:02:33.4590203+00:00): kl. 18.00: Fører av MC kjørt med ambulanse til Haukeland Universitetssykehus. Tunnelen er for øyeblikket helt stengt. Politiet jobber for å fjerne MC og åpne veien så raskt som mulig. Bilberger er på vei.
+
+243qp2 (Nordhordlandsbroen, Alver, 2024-08-01T06:38:45.7805549+00:00): Kl. 08:24 - Kjøretøystans. Bil med nødblink på broen. Er mulig å passere. 
+
+243qp2 (Nordhordlandsbroen, Alver, 2024-08-01T06:38:45.7805549+00:00): Kl. 08:43 - Kjøretøyet er borte fra broen.
+
+243qp2 (Nordhordlandsbroen, Alver, 2024-08-01T06:45:38.1691444+00:00): Kl. 08:24 - Kjøretøystans. Bil med nødblink på broen. Er mulig å passere. 
+
+243qp2 (Nordhordlandsbroen, Alver, 2024-08-01T06:45:38.1691444+00:00): Kl. 08:43 - Kjøretøyet er borte fra broen.
+
+24djpw (Flyplassvegen, Bergen, 2024-08-01T06:27:33.4694557+00:00): Kl.08:07 Trafikkulykke mellom bil og buss. Buss kjørt på bil bakfrå. Kun førar i bil, medan fleire passasjerar i bussen. Alle involverte er medviten. Store materielle skadar på begge kjøretøy. Ikkje kjørbare. 
+
