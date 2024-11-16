@@ -62,7 +62,7 @@ class LanguageToGraph:
                 {"role": "user", "content": (
                     "Jeg vil at du skal oppdatere en prompt for Named Entity Recognition basert på de følgende meldingene.\n\n"
                     f"Meldinger: {', '.join(sample_messages)}\n\n"
-                    f"{self.entity_prompt}\n\n"
+                    f"Tilpass ny prompt slik at den ligner på den forrige prompten: {self.entity_prompt}\n\n"
                 )}
             ],
             temperature=0.7
