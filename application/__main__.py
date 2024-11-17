@@ -4,9 +4,11 @@ from openai import OpenAI
 import openai
 from constants import API_KEY
 import time
+from rdflib import Graph, Namespace, Literal, RDF, RDFS, URIRef
 
 
-openai.api_key = API_KEY # NOTE: Change this API_KEY to you own as the original key is stored safely elsewhere. 
+
+openai.api_key = API_KEY # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere. 
 
 client = OpenAI(api_key=openai.api_key)
 
@@ -102,11 +104,10 @@ class LanguageToGraph:
                     "content": (
                         f"{self.entity_prompt}\n\n"
                         f"Tekst:\n{text}\n\n"
-                        "Output hvordan type entiteter du har funnet (legg til flere entitetstyper hvis det er nødvendig)\n"
                     ),
                 },
             ],
-            temperature=0.6
+            temperature=0.8
         )
         
         return completion.choices[0].message.content.strip()
@@ -124,11 +125,10 @@ class LanguageToGraph:
                         f"{self.relationship_prompt}\n\n"
                         f"Tekst:\n{text}\n\n"
                         f"Entiteter:\n{entities}\n\n"
-                        "Output relasjoner som:\n"
-                        "(Subjekt, Predikat, Objekt)"
                     ),
                 },
             ],
+            temperature=0.8
         )
         return completion.choices[0].message.content.strip()
 
@@ -140,6 +140,7 @@ class LanguageToGraph:
         for i, message in enumerate(messages):
             print("-------------------------------------------")
             print(message, "\n")
+            time.sleep(1)
 
             entities = self.extract_entities_from_text(message)
             print(f"Entiteter i melding {i+1}:\n{entities}\n")
@@ -159,7 +160,7 @@ class LanguageToGraph:
 
 
 
-ltg = LanguageToGraph(api_key=openai.api_key)
+ltg = LanguageToGraph(model="gpt-4o", api_key=openai.api_key)
 directory_path = "trafikktekster-20240814.txt"
 messages = ltg.load_msg(directory_path)
 
