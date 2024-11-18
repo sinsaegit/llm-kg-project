@@ -157,8 +157,7 @@ class LanguageToGraph:
             knowledge_graphs.append(knowledge_graph)
         
         return knowledge_graphs
-
-
+    
 
 ltg = LanguageToGraph(model="gpt-4o", api_key=openai.api_key)
 directory_path = "trafikktekster-20240814.txt"
