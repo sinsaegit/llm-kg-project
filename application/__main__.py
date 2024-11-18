@@ -1,26 +1,25 @@
+# Nessecary imports for the project
 import json
-
 import openai
 from constants import API_KEY
 from openai import OpenAI
 from rdflib import Graph, Namespace
 
 openai.api_key = API_KEY  # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere.
-
-client = OpenAI(api_key=openai.api_key)
-
+client = OpenAI(api_key=openai.api_key) 
 
 class LanguageToGraph:
-    def __init__(self, model="gpt-4o-mini", api_key=None):
+    def __init__(self, model="gpt-4o-mini", api_key=None): # API_KEY is None if no key argued. The same goes for chat-4o-mini.
         self.model = model
         self.entities = None
         self.message = None
         if api_key:
             openai.api_key = api_key
         self.graph = Graph()
-        self.namespace = Namespace("http://example.org#")  # Define your namespace
+        self.namespace = Namespace("http://example.org#")  # Define a namespace
         self.graph.bind("ex", self.namespace)
 
+        # Standard promts that are stored in case revisions are proposed.
         self.entity_prompt = (
             f"Dette er meldingene: {self.message}."
             "Du skal finne viktige entiteter som for eksempel: lokasjoner, hendelser, kjøretøy og mennesker med mer, fra følgende melding."
@@ -35,128 +34,131 @@ class LanguageToGraph:
             "Bare inkluder de identifsierte triplene med relasjonen du fant som predikat, uten noe ekstra besvarelse."
         )
 
+        # These are few shots examples stored as instance variables. They are stored like this in case automation is proposed
         self.few_shot_entities = """
-Input: 24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.
-Output: {
-  "ID": "24b43w",
-  "Tid": "2024-08-12T05:50:23.2538153+00:00",
-  "Lokasjon": "Follesevegen, Askøy",
-  "Entiteter": [
-    {"Entiteter": "Bilen", "Type": "Kjøretøy"},
-    {"Entiteter": "Materielle skadar", "Type": "Hendelse"},
-    {"Entiteter": "Bilberger", "Type": "Service"},
-    {"Entiteter": "Politiet", "Type": "Organisasjon"}
-  ]
-}
+            Input: 24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.
+            Output: {
+            "ID": "24b43w",
+            "Tid": "2024-08-12T05:50:23.2538153+00:00",
+            "Lokasjon": "Follesevegen, Askøy",
+            "Entiteter": [
+                {"Entiteter": "Bilen", "Type": "Kjøretøy"},
+                {"Entiteter": "Materielle skadar", "Type": "Hendelse"},
+                {"Entiteter": "Bilberger", "Type": "Service"},
+                {"Entiteter": "Politiet", "Type": "Organisasjon"}
+            ]
+            }
 
-Input: 24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet. 
-Output: {
-  "ID": "24c8x7",
-  "Tid": "2024-08-11T08:18:25.5956991+00:00",
-  "Location": "Fjøsanger, Bergen",
-  "Entiteter": [
-    {"Entiteter": "Kjøring i ruspåvirket tilstand", "Type": "Hendelse"},
-    {"Entiteter": "Felgen", "Type": "Kjøretøy-del"},
-    {"Entiteter": "Kjøretøy", "Type": "Kjøretøy"},
-    {"Entiteter": "Politiet", "Type": "Organisasjon"},
-    {"Entiteter": "To personer", "Type": "Personer"},
-    {"Entiteter": "Bergen Legevakt", "Type": "Sted"}
-  ]
-}
+            Input: 24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet. 
+            Output: {
+            "ID": "24c8x7",
+            "Tid": "2024-08-11T08:18:25.5956991+00:00",
+            "Location": "Fjøsanger, Bergen",
+            "Entiteter": [
+                {"Entiteter": "Kjøring i ruspåvirket tilstand", "Type": "Hendelse"},
+                {"Entiteter": "Felgen", "Type": "Kjøretøy-del"},
+                {"Entiteter": "Kjøretøy", "Type": "Kjøretøy"},
+                {"Entiteter": "Politiet", "Type": "Organisasjon"},
+                {"Entiteter": "To personer", "Type": "Personer"},
+                {"Entiteter": "Bergen Legevakt", "Type": "Sted"}
+            ]
+            }
 
-Input: 24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet. 
-Output: {
-  "ID": "24w0z5",
-  "Tid": "2024-08-14T06:07:37.2057264+00:00",
-  "Lokasjon": "Danmarksplass, Bergen",
-  "Entiteter": [
-    {"Entiteter": "3 biler", "Type": "Kjøretøy"},
-    {"Entiteter": "Trafikkuhell", "Type": "Hendelse"},
-    {"Entiteter": "Materielle skader", "Type": "Skade"},
-    {"Entiteter": "Bergen sør", "Type": "Sted"},
-    {"Entiteter": "Politiet", "Type": "Organisasjon"}
-  ]
-}
-"""
+            Input: 24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet. 
+            Output: {
+            "ID": "24w0z5",
+            "Tid": "2024-08-14T06:07:37.2057264+00:00",
+            "Lokasjon": "Danmarksplass, Bergen",
+            "Entiteter": [
+                {"Entiteter": "3 biler", "Type": "Kjøretøy"},
+                {"Entiteter": "Trafikkuhell", "Type": "Hendelse"},
+                {"Entiteter": "Materielle skader", "Type": "Skade"},
+                {"Entiteter": "Bergen sør", "Type": "Sted"},
+                {"Entiteter": "Politiet", "Type": "Organisasjon"}
+            ]
+            }
+            """
+        # These are few shots examples stored as instance variables. They are stored like this in case automation is proposed
         self.few_shot_relations = """
-Input: [Melding: "24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.",
-        Entiteter: {
-        "ID": "24b43w",
-        "Timestamp": "2024-08-12T05:50:23.2538153+00:00",
-        "Lokasjon": "Follesevegen, Askøy",
-        "Entiteter": [
-            {"Entiteter": "Bilen", "Type": "Kjøretøy"},
-            {"Entiteter": "Materielle skadar", "Type": "Hendelse"},
-            {"Entiteter": "Bilberger", "Type": "Service"},
-            {"Entiteter": "Politiet", "Type": "Organisasjon"}
-        ]}
-Output: 
-[
-(Hendelse, har_id, 24b43w)
-(Hendelse, har_tid, 2024-08-12T05:50:23.2538153+00:00)
-(Hendelse, skjedde_på, Follesevegen, Askøy)
-(Hendelse, har_entiteter, Entiteter)
-(Hendelse, del_av_forløp, (Politiet, ankom, Follesvegen, Askøy))
-(Hendelse, del_av_forløp, (Materielle skadar, på, Bilen))
-(Hendelse, del_av_forløp, (Bilberger, er, bestilt))
-(Hendelse, del_av_forløp, (Trafikken, flyter, greit))
-]
+            Input: [Melding: "24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.",
+                    Entiteter: {
+                    "ID": "24b43w",
+                    "Timestamp": "2024-08-12T05:50:23.2538153+00:00",
+                    "Lokasjon": "Follesevegen, Askøy",
+                    "Entiteter": [
+                        {"Entiteter": "Bilen", "Type": "Kjøretøy"},
+                        {"Entiteter": "Materielle skadar", "Type": "Hendelse"},
+                        {"Entiteter": "Bilberger", "Type": "Service"},
+                        {"Entiteter": "Politiet", "Type": "Organisasjon"}
+                    ]}
+            Output: 
+            [
+            (Hendelse, har_id, 24b43w)
+            (Hendelse, har_tid, 2024-08-12T05:50:23.2538153+00:00)
+            (Hendelse, skjedde_på, Follesevegen, Askøy)
+            (Hendelse, har_entiteter, Entiteter)
+            (Hendelse, del_av_forløp, (Politiet, ankom, Follesvegen, Askøy))
+            (Hendelse, del_av_forløp, (Materielle skadar, på, Bilen))
+            (Hendelse, del_av_forløp, (Bilberger, er, bestilt))
+            (Hendelse, del_av_forløp, (Trafikken, flyter, greit))
+            ]
 
 
-Input: [Melding: "24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet.",
-        Entiteter:{
-        "ID": "24c8x7",
-        "Timestamp": "2024-08-11T08:18:25.5956991+00:00",
-        "Lokasjon": "Fjøsanger, Bergen",
-        "Hendelse": " Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet. "
-        "Entiteter": [
-            {"Entiteter": "Kjøring i ruspåvirket tilstand", "Type": "Hendelse"},
-            {"Entiteter": "Felgen", "Type": "Kjøretøy-del"},
-            {"Entiteter": "Kjøretøy", "Type": "Kjøretøy"},
-            {"Entiteter": "Politiet", "Type": "Organisasjon"},
-            {"Entiteter": "To personer", "Type": "Personer"},
-            {"Entiteter": "Bergen Legevakt", "Type": "Sted"}
-        ]}
-Output: 
-[
-(Hendelse, har_id, 24c8x7),
-(Hendelse, har_tid, 2024-08-11T08:18:25.5956991+00:00),
-(Hendelse, skjedde_på, Fjøsanger, Bergen),
-(Hendelse, har_entiteter, Entiteter),
-(Hendelse, del_av_forløp, (Politiet, stanset, Kjøretøy, i sidegate til Fjøsangervegen)),
-(Hendelse, del_av_forløp, (Kjøring i ruspåvirket tilstand, inkluderte, Felgen)),
-(Hendelse, del_av_forløp, (To personer, fremstår som, ruset)),
-(Hendelse, del_av_forløp, (Fører, fremstilt for blodprøve, på Bergen Legevakt)),
-(Hendelse, del_av_forløp, (Politiet, opprettet, Sak))
-]
+            Input: [Melding: "24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet.",
+                    Entiteter:{
+                    "ID": "24c8x7",
+                    "Timestamp": "2024-08-11T08:18:25.5956991+00:00",
+                    "Lokasjon": "Fjøsanger, Bergen",
+                    "Hendelse": " Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet. "
+                    "Entiteter": [
+                        {"Entiteter": "Kjøring i ruspåvirket tilstand", "Type": "Hendelse"},
+                        {"Entiteter": "Felgen", "Type": "Kjøretøy-del"},
+                        {"Entiteter": "Kjøretøy", "Type": "Kjøretøy"},
+                        {"Entiteter": "Politiet", "Type": "Organisasjon"},
+                        {"Entiteter": "To personer", "Type": "Personer"},
+                        {"Entiteter": "Bergen Legevakt", "Type": "Sted"}
+                    ]}
+            Output: 
+            [
+            (Hendelse, har_id, 24c8x7),
+            (Hendelse, har_tid, 2024-08-11T08:18:25.5956991+00:00),
+            (Hendelse, skjedde_på, Fjøsanger, Bergen),
+            (Hendelse, har_entiteter, Entiteter),
+            (Hendelse, del_av_forløp, (Politiet, stanset, Kjøretøy, i sidegate til Fjøsangervegen)),
+            (Hendelse, del_av_forløp, (Kjøring i ruspåvirket tilstand, inkluderte, Felgen)),
+            (Hendelse, del_av_forløp, (To personer, fremstår som, ruset)),
+            (Hendelse, del_av_forløp, (Fører, fremstilt for blodprøve, på Bergen Legevakt)),
+            (Hendelse, del_av_forløp, (Politiet, opprettet, Sak))
+            ]
 
 
-Input: [Meldinger: "24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
-        Entiteter:{
-        "ID": "24w0z5",
-        "Timestamp": "2024-08-14T06:07:37.2057264+00:00",
-        "Lokasjon": "Danmarksplass, Bergen",
-        "Hendelse": "3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
-        "Entiteter":[
-            {"Entiteter": "3 biler", "Type": "Kjøretøy"},
-            {"Entiteter": "Trafikkuhell", "Type": "Hendelse"},
-            {"Entiteter": "Materielle skader", "Type": "Skade"},
-            {"Entiteter": "Bergen sør", "Type": "Sted"},
-            {"Entiteter": "Politiet", "Type": "Organisasjon"}
-        ]}
-Output:
-[
-(Hendelse, har_id, 24w0z5),
-(Hendelse, har_tid, 2024-08-14T06:07:37.2057264+00:00),
-(Hendelse, skjedde_på, Danmarksplass, Bergen),
-(Hendelse, har_entiteter, Entiteter),
-(Hendelse, del_av_forløp, (3 biler, involvert i, Trafikkuhell)),
-(Hendelse, del_av_forløp, (Trafikkuhell, resulterte i, Materielle skader)),
-(Hendelse, del_av_forløp, (Trafikkuhell, skaper, køer mot Bergen sør)),
-(Hendelse, del_av_forløp, (Politiet, er på vei til, stedet))
-]
-"""
+            Input: [Meldinger: "24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
+                    Entiteter:{
+                    "ID": "24w0z5",
+                    "Timestamp": "2024-08-14T06:07:37.2057264+00:00",
+                    "Lokasjon": "Danmarksplass, Bergen",
+                    "Hendelse": "3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
+                    "Entiteter":[
+                        {"Entiteter": "3 biler", "Type": "Kjøretøy"},
+                        {"Entiteter": "Trafikkuhell", "Type": "Hendelse"},
+                        {"Entiteter": "Materielle skader", "Type": "Skade"},
+                        {"Entiteter": "Bergen sør", "Type": "Sted"},
+                        {"Entiteter": "Politiet", "Type": "Organisasjon"}
+                    ]}
+            Output:
+            [
+            (Hendelse, har_id, 24w0z5),
+            (Hendelse, har_tid, 2024-08-14T06:07:37.2057264+00:00),
+            (Hendelse, skjedde_på, Danmarksplass, Bergen),
+            (Hendelse, har_entiteter, Entiteter),
+            (Hendelse, del_av_forløp, (3 biler, involvert i, Trafikkuhell)),
+            (Hendelse, del_av_forløp, (Trafikkuhell, resulterte i, Materielle skader)),
+            (Hendelse, del_av_forløp, (Trafikkuhell, skaper, køer mot Bergen sør)),
+            (Hendelse, del_av_forløp, (Politiet, er på vei til, stedet))
+            ]
+            """
 
+    # Loads different messages
     def load_msg(self, filename):
         messages = []
         if filename.endswith(".txt"):
@@ -265,14 +267,14 @@ Output:
 
     def parse_data(self, knowledge_graph):
         for prompt_item in knowledge_graph:
-            # Parse 'entities' if it's a string
+            # Parses entites if they are string
             if isinstance(prompt_item.get("entities"), str):
                 try:
                     prompt_item["entities"] = json.loads(prompt_item["entities"])
                 except json.JSONDecodeError as e:
                     print(f"Error decoding entities: {e}")
             
-            # Parse 'relationships' if it's a string
+            # Parses relationships if they are string
             if isinstance(prompt_item.get("relationships"), str):
                 try:
                     # Replace parentheses to prepare for safe parsing
