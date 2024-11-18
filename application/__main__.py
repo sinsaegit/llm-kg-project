@@ -1,8 +1,9 @@
+import json
+
 import openai
 from constants import API_KEY
 from openai import OpenAI
 from rdflib import Graph, Namespace
-import json
 
 openai.api_key = API_KEY  # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere.
 
@@ -38,9 +39,9 @@ class LanguageToGraph:
 Input: 24b43w (Follesevegen, Askøy, 2024-08-12T05:50:23.2538153+00:00): Politiet har komme fram til staden. Materielle skadar i front av bilen. Bilberger er bestilte og på veg. Trafikken flyt greitt på staden.
 Output: {
   "ID": "24b43w",
-  "Timestamp": "2024-08-12T05:50:23.2538153+00:00",
-  "Location": "Follesevegen, Askøy",
-  "Entities": [
+  "Tid": "2024-08-12T05:50:23.2538153+00:00",
+  "Lokasjon": "Follesevegen, Askøy",
+  "Entiteter": [
     {"Entiteter": "Bilen", "Type": "Kjøretøy"},
     {"Entiteter": "Materielle skadar", "Type": "Hendelse"},
     {"Entiteter": "Bilberger", "Type": "Service"},
@@ -51,9 +52,9 @@ Output: {
 Input: 24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet. 
 Output: {
   "ID": "24c8x7",
-  "Timestamp": "2024-08-11T08:18:25.5956991+00:00",
+  "Tid": "2024-08-11T08:18:25.5956991+00:00",
   "Location": "Fjøsanger, Bergen",
-  "Entities": [
+  "Entiteter": [
     {"Entiteter": "Kjøring i ruspåvirket tilstand", "Type": "Hendelse"},
     {"Entiteter": "Felgen", "Type": "Kjøretøy-del"},
     {"Entiteter": "Kjøretøy", "Type": "Kjøretøy"},
@@ -66,9 +67,9 @@ Output: {
 Input: 24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet. 
 Output: {
   "ID": "24w0z5",
-  "Timestamp": "2024-08-14T06:07:37.2057264+00:00",
-  "Location": "Danmarksplass, Bergen",
-  "Entities": [
+  "Tid": "2024-08-14T06:07:37.2057264+00:00",
+  "Lokasjon": "Danmarksplass, Bergen",
+  "Entiteter": [
     {"Entiteter": "3 biler", "Type": "Kjøretøy"},
     {"Entiteter": "Trafikkuhell", "Type": "Hendelse"},
     {"Entiteter": "Materielle skader", "Type": "Skade"},
@@ -132,17 +133,17 @@ Output:
 
 Input: [Meldinger: "24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
         Entiteter:{
-  "ID": "24w0z5",
-  "Timestamp": "2024-08-14T06:07:37.2057264+00:00",
-  "Lokasjon": "Danmarksplass, Bergen",
-  "Hendelse"
-  "Entiteter": [
-    {"Entiteter": "3 biler", "Type": "Kjøretøy"},
-    {"Entiteter": "Trafikkuhell", "Type": "Hendelse"},
-    {"Entiteter": "Materielle skader", "Type": "Skade"},
-    {"Entiteter": "Bergen sør", "Type": "Sted"},
-    {"Entiteter": "Politiet", "Type": "Organisasjon"}
-  ]}
+        "ID": "24w0z5",
+        "Timestamp": "2024-08-14T06:07:37.2057264+00:00",
+        "Lokasjon": "Danmarksplass, Bergen",
+        "Hendelse": "3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
+        "Entiteter":[
+            {"Entiteter": "3 biler", "Type": "Kjøretøy"},
+            {"Entiteter": "Trafikkuhell", "Type": "Hendelse"},
+            {"Entiteter": "Materielle skader", "Type": "Skade"},
+            {"Entiteter": "Bergen sør", "Type": "Sted"},
+            {"Entiteter": "Politiet", "Type": "Organisasjon"}
+        ]}
 Output:
 [
 (Hendelse, har_id, 24w0z5),
@@ -166,7 +167,7 @@ Output:
                         messages.append(line.strip())
 
         if "trafikktekster" not in filename:
-            self.Entiteter_prompt = self.revise_Entiteter_prompt(messages)
+            self.entity_prompt = self.revise_Entiteter_prompt(messages)
             self.relationship_prompt = self.revise_Entiteter_prompt(messages)
 
         return messages
@@ -186,7 +187,7 @@ Output:
                     "content": (
                         "Jeg vil at du skal oppdatere en prompt for Named Entiteter Recognition basert på de følgende meldingene.\n\n"
                         f"Meldinger: {', '.join(sample_messages)}\n\n"
-                        f"Tilpass ny prompt slik at den ligner på den forrige prompten: {self.Entiteter_prompt}\n\n"
+                        f"Tilpass ny prompt slik at den ligner på den forrige prompten: {self.entity_prompt}\n\n"
                     ),
                 },
             ],
@@ -194,7 +195,7 @@ Output:
         )
 
         # Update the Entiteter prompt with GPT response
-        self.Entiteter_prompt = completion.choices[0].message.content.strip()
+        self.entity_prompt = completion.choices[0].message.content.strip()
 
     def revise_relationship_prompt(self, messages):
         sample_messages = messages[:3]
@@ -218,7 +219,6 @@ Output:
             temperature=0.7,
         )
 
-        # Update the relationship prompt with GPT response
         self.relationship_prompt = completion.choices[0].message.content.strip()
 
     def extract_entities_from_text(self, text):
@@ -248,7 +248,7 @@ Output:
                     "role": "system",
                     "content": "Du er en assistent trent til å gjennomføre Relation Extraction-oppgaver basert på meldingen du mottar og entiter som som du mottar, slik at du kan produsere Kunnskapsgrafer med ontolgier.\n"
                     "Du skal alltid identifisere en ID om det finnes og hele meldingen skal være indetifsert som en hendelse. Returner som en liste som kan enkelt leses med eval(). Her er noen few-shot eksempler:\n"
-                    f"{self.few_shot_relations}",
+                    f"Her er noen few-shot eksempler: {self.few_shot_relations}",
                 },
                 {
                     "role": "user",
@@ -263,21 +263,31 @@ Output:
         )
         return completion.choices[0].message.content.strip()
 
-    def parse_data(data):
-        for item in data:
-            if isinstance(item.get('entities'), str):
+    def parse_data(self, knowledge_graph):
+        for prompt_item in knowledge_graph:
+            # Parse 'entities' if it's a string
+            if isinstance(prompt_item.get("entities"), str):
                 try:
-                    item['entities'] = json.loads(item['entities'])
+                    prompt_item["entities"] = json.loads(prompt_item["entities"])
                 except json.JSONDecodeError as e:
-                    print(f"Encountered an issue: {e}")
-            if isinstance(item.get('relationships'), str):
+                    print(f"Error decoding entities: {e}")
+            
+            # Parse 'relationships' if it's a string
+            if isinstance(prompt_item.get("relationships"), str):
                 try:
-                    relationships_str = item['relationships'].replace("(", "[").replace(")", "]")
-                    item['relationships'] = eval(relationships_str)
-                except Exception as e:
-                    print(f"Error decoding relationships: {e}")
-        return data
-
+                    # Replace parentheses to prepare for safe parsing
+                    relationships_str = (
+                        prompt_item["relationships"]
+                        .replace("(", "[")
+                        .replace(")", "]")
+                        .replace("'", '"')  # Replace single quotes with double quotes for valid JSON
+                    )
+                    # Convert to JSON-compatible structure and parse
+                    relationships = json.loads(relationships_str)
+                    prompt_item["relationships"] = [tuple(rel) for rel in relationships]
+                except (json.JSONDecodeError, ValueError) as e:
+                    print(f"Error decoding relationships: {e}")        
+        return knowledge_graph
 
     def process_messages(self, messages):
         knowledge_graphs = []
@@ -288,53 +298,31 @@ Output:
 
             entities = self.extract_entities_from_text(message)
             print(f"Entiteter i melding {i+1}:\n{entities}\n")
-
             relationships = self.extract_relationships_from_text(message, entities)
             print(f"Relasjoner i melding {i+1}:\n{relationships}\n")
 
             knowledge_graph = {
-                "message": message,
-                "entities": entities,
-                "relationships": relationships,
+                "Meldinger": message,
+                "Entiteter": entities,
+                "Relasjoner": relationships,
             }
             knowledge_graphs.append(knowledge_graph)
 
-        return knowledge_graphs
+        knowledge_graph = self.parse_data(knowledge_graphs)
+        return knowledge_graph
 
 
 ltg = LanguageToGraph(model="gpt-4o-mini", api_key=openai.api_key)
 directory_path = "trafikktekster-20240814.txt"
 messages = ltg.load_msg(directory_path)
 
-testset_messages = messages[:2]
+testset_messages = messages[5:8]
 knowledge_graphs = ltg.process_messages(testset_messages)
-# for i in knowledge_graphs:
-#     print(i, "\n\n")  # print(testset_messages)
-def parse_data(data):
-    for item in data:
-        # Convert entities field from JSON string to Python dictionary
-        if isinstance(item.get('entities'), str):
-            try:
-                item['entities'] = json.loads(item['entities'])
-            except json.JSONDecodeError as e:
-                print(f"Error decoding entities: {e}")
+print(knowledge_graphs)
 
-        # Convert relationships field from string to Python list
-        if isinstance(item.get('relationships'), str):
-            try:
-                # Replace parentheses with square brackets for Python list compatibility
-                relationships_str = item['relationships'].replace("(", "[").replace(")", "]")
-                item['relationships'] = eval(relationships_str)  # Safely evaluate as Python list
-            except Exception as e:
-                print(f"Error decoding relationships: {e}")
-    return data
 
-# Process the data
-parsed_data = parse_data(knowledge_graphs)
-
-# Print the parsed data for verification
-for item in parsed_data:
-    print("Message:", item['message'])
-    print("Entities:", item['entities'])
-    print("Relationships:", item['relationships'])
+for item in knowledge_graphs:
+    print("Meldinger:", item["Meldinger"])
+    print("Entiteter:", item["Entiteter"])
+    print("Relasjoner:", item["Relasjoner"])
     print()
