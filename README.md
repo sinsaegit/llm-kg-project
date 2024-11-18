@@ -12,7 +12,7 @@ visualized using RDF Graphs.
 In order to fully inspect there are some things you should do.
 
 If you do not want to keep it afterwards, you should create a venv in your specified folder and do the following:
-``
+```
 py -m venv .example-venv
 
 source .example-venv/Scripts/activate
@@ -20,8 +20,7 @@ source .example-venv/Scripts/activate
 git clone https://github.com/sinsaegit/llm-kg-project.git
 
 pip install -r requirements.txt 
-``
-
+```
 
 
 
