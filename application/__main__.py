@@ -3,7 +3,8 @@ import json
 import openai
 from constants import API_KEY
 from openai import OpenAI
-from rdflib import Graph, Namespace
+from rdflib import Graph, Namespace, Literal, RDF, URIRef
+
 
 openai.api_key = API_KEY  # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere.
 client = OpenAI(api_key=openai.api_key) 
@@ -312,6 +313,27 @@ class LanguageToGraph:
 
         knowledge_graph = self.parse_data(knowledge_graphs)
         return knowledge_graph
+    
+    def add_entities_to_graph(self, entities): # NOTE: Add the entities to the knowledge graph
+        for entity in entities["Entiteter"]:
+            entity_uri = URIRef(self.namespace[entity["Entiteter"].replace(" ", "_")])
+            entity_type = URIRef(self.namespace[entity["Type"]])
+            self.graph.add((entity_uri, RDF.type, entity_type))
+    
+    def add_relationships_to_graph(self, relationships): # NOTE: Adds the relationship in knowledge graphs
+        for rel in relationships:
+            subj = URIRef(self.namespace[rel[0].replace(" ", "_")])
+            pred = URIRef(self.namespace[rel[1].replace(" ", "_")])
+            obj = URIRef(self.namespace[rel[2].replace(" ", "_")])
+            self.graph.add((subj, pred, obj))
+
+    def create_ontology(self, knowledge_graphs):
+        for kg in knowledge_graphs:
+            entities = kg["Entiteter"]
+            relationships = kg["Relasjoner"]
+
+            self.add_entities_to_graph(entities)
+            self.add_relationships_to_graph(relationships)
 
 
 ltg = LanguageToGraph(model="gpt-4o-mini", api_key=openai.api_key)
