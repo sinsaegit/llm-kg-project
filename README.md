@@ -15,8 +15,8 @@ If you do not want to keep it afterwards, you should create a virtual environmen
 ```
 py -m venv .example-venv
 
-source ./.example-venv/Scripts/activate # often for windows
-source ./.examlpe-venv/bin/activate # often for mac
+source ./.example-venv/Scripts/activate     # often for windows
+source ./.examlpe-venv/bin/activate     # often for mac
 
 git clone https://github.com/sinsaegit/llm-kg-project.git
 
