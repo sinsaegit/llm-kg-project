@@ -1,21 +1,28 @@
 # Nessecary imports for the project
-import json
+
 import openai
 from constants import API_KEY
 from openai import OpenAI
-from rdflib import Graph, Namespace, Literal, RDF, URIRef
-
+from rdflib import Graph, Namespace
+import json
 
 openai.api_key = API_KEY  # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere.
-client = OpenAI(api_key=openai.api_key) 
+client = OpenAI(api_key=openai.api_key)
+
 
 class LanguageToGraph:
-    def __init__(self, model="gpt-4o-mini", api_key=None): # API_KEY is None if no key argued. The same goes for chat-4o-mini.
+    def __init__(
+        self, model="gpt-4o-mini", api_key=None
+    ):  # API_KEY is None if no key argued. The same goes for chat-4o-mini.
         self.model = model
         self.entities = None
         self.message = None
         if api_key:
             openai.api_key = api_key
+        else:
+            raise ValueError(
+                "API key is required to initialize the LanguageToGraph class. Please provide a valid API_KEY."
+            )
         self.graph = Graph()
         self.namespace = Namespace("http://example.org#")  # Define a namespace
         self.graph.bind("ex", self.namespace)
@@ -92,17 +99,18 @@ class LanguageToGraph:
                         {"Entiteter": "Bilberger", "Type": "Service"},
                         {"Entiteter": "Politiet", "Type": "Organisasjon"}
                     ]}
-            Output: 
-            [
-            (Hendelse, har_id, 24b43w)
-            (Hendelse, har_tid, 2024-08-12T05:50:23.2538153+00:00)
-            (Hendelse, skjedde_på, Follesevegen, Askøy)
-            (Hendelse, har_entiteter, Entiteter)
-            (Hendelse, del_av_forløp, (Politiet, ankom, Follesvegen, Askøy))
-            (Hendelse, del_av_forløp, (Materielle skadar, på, Bilen))
-            (Hendelse, del_av_forløp, (Bilberger, er, bestilt))
-            (Hendelse, del_av_forløp, (Trafikken, flyter, greit))
-            ]
+            Output
+            {
+            "Output": [
+            {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24b43w"},
+            {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-12T05:50:23.2538153+00:00"},
+            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Follesevegen, Askøy"},
+            {"Subjekt": "Hendelse", "Predikat": "har_entiteter", "Objekt": "Entiteter"},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "ankom", "Follesvegen", "Askøy"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Materielle skadar", "på", "Bilen"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Bilberger", "er", "bestilt"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Trafikken", "flyter", "greit"]}
+            ]}
 
 
             Input: [Melding: "24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet.",
@@ -119,20 +127,22 @@ class LanguageToGraph:
                         {"Entiteter": "To personer", "Type": "Personer"},
                         {"Entiteter": "Bergen Legevakt", "Type": "Sted"}
                     ]}
-            Output: 
-            [
-            (Hendelse, har_id, 24c8x7),
-            (Hendelse, har_tid, 2024-08-11T08:18:25.5956991+00:00),
-            (Hendelse, skjedde_på, Fjøsanger, Bergen),
-            (Hendelse, har_entiteter, Entiteter),
-            (Hendelse, del_av_forløp, (Politiet, stanset, Kjøretøy, i sidegate til Fjøsangervegen)),
-            (Hendelse, del_av_forløp, (Kjøring i ruspåvirket tilstand, inkluderte, Felgen)),
-            (Hendelse, del_av_forløp, (To personer, fremstår som, ruset)),
-            (Hendelse, del_av_forløp, (Fører, fremstilt for blodprøve, på Bergen Legevakt)),
-            (Hendelse, del_av_forløp, (Politiet, opprettet, Sak))
-            ]
+            
+            Output:
+            {
+            "Output": [
+            {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24c8x7"},
+            {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-11T08:18:25.5956991+00:00"},
+            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Fjøsanger, Bergen"},
+            {"Subjekt": "Hendelse", "Predikat": "har_entiteter", "Objekt": "Entiteter"},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "stanset", "Kjøretøy", "i sidegate til Fjøsangervegen"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Kjøring i ruspåvirket tilstand", "inkluderte", "Felgen"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["To personer", "fremstår som", "ruset"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Fører", "fremstilt for blodprøve", "på Bergen Legevakt"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "opprettet", "Sak"]}
+            ]}
 
-
+            
             Input: [Meldinger: "24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
                     Entiteter:{
                     "ID": "24w0z5",
@@ -146,17 +156,19 @@ class LanguageToGraph:
                         {"Entiteter": "Bergen sør", "Type": "Sted"},
                         {"Entiteter": "Politiet", "Type": "Organisasjon"}
                     ]}
+        
             Output:
-            [
-            (Hendelse, har_id, 24w0z5),
-            (Hendelse, har_tid, 2024-08-14T06:07:37.2057264+00:00),
-            (Hendelse, skjedde_på, Danmarksplass, Bergen),
-            (Hendelse, har_entiteter, Entiteter),
-            (Hendelse, del_av_forløp, (3 biler, involvert i, Trafikkuhell)),
-            (Hendelse, del_av_forløp, (Trafikkuhell, resulterte i, Materielle skader)),
-            (Hendelse, del_av_forløp, (Trafikkuhell, skaper, køer mot Bergen sør)),
-            (Hendelse, del_av_forløp, (Politiet, er på vei til, stedet))
-            ]
+            {
+            "Output": [
+            {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24w0z5"},
+            {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-14T06:07:37.2057264+00:00"},
+            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Danmarksplass, Bergen"},
+            {"Subjekt": "Hendelse", "Predikat": "har_entiteter", "Objekt": "Entiteter"},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["3 biler", "involvert i", "Trafikkuhell"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Trafikkuhell", "resulterte i", "Materielle skader"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Trafikkuhell", "skaper", "køer mot Bergen sør"]},
+            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "er på vei til", "stedet"]}
+            ]}
             """
 
     # Loads different messages
@@ -230,8 +242,9 @@ class LanguageToGraph:
             messages=[
                 {
                     "role": "system",
-                    "content": "Du er en assistent trent til å gjennomføre Named Entiteter Recognition-oppgaver for Knowledge Graphs basert på meldingen og tilhørende entiteter fra meldigen.\n"
-                    "Du skal alltid produsere en hovedentitet som kan binde entietene. Eksempelvis er hele meldingen en hendelse og om det er mulig, identifiser en ID-kode. Returner som en dictionary som kan enkelt behandles med eval()."
+                    "content": "Du er en assistent trent til å gjennomføre Named Entity Recognition-oppgaver for Knowledge Graphs basert på meldingen og tilhørende entiteter fra meldigen.\n"
+                    "Du skal alltid produsere en hovedentitet som kan binde entietene. Eksempelvis er hele meldingen en hendelse. Identifiser en ID-kode om det er mulig.\n"
+                    "Returner en dictionary som kan parses som et JSON objekt.\n"
                     f"Her er noen few-shot eksempler: {self.few_shot_entities}\n",
                 },
                 {
@@ -249,8 +262,8 @@ class LanguageToGraph:
             messages=[
                 {
                     "role": "system",
-                    "content": "Du er en assistent trent til å gjennomføre Relation Extraction-oppgaver basert på meldingen du mottar og entiter som som du mottar, slik at du kan produsere Kunnskapsgrafer med ontolgier.\n"
-                    "Du skal alltid identifisere en ID om det finnes og hele meldingen skal være indetifsert som en hendelse. Returner som en liste som kan enkelt leses med eval(). Her er noen few-shot eksempler:\n"
+                    "content": "Du er en assistent trent til å gjennomføre Relation Extraction-oppgaver basert på en melding og entitetene du mottar, slik at du kan produsere Kunnskapsgrafer med ontolgier.\n"
+                    "Du skal alltid identifisere en ID om det finnes og hele meldingen skal være indetifsert som en hendelse. Returner som en liste som kan parses som et JSON objekt.\n"
                     f"Her er noen few-shot eksempler: {self.few_shot_relations}",
                 },
                 {
@@ -266,31 +279,24 @@ class LanguageToGraph:
         )
         return completion.choices[0].message.content.strip()
 
-    def parse_data(self, knowledge_graph):
-        for prompt_item in knowledge_graph:
-            # Parses entites if they are string
-            if isinstance(prompt_item.get("entities"), str):
-                try:
-                    prompt_item["entities"] = json.loads(prompt_item["entities"])
-                except json.JSONDecodeError as e:
-                    print(f"Error decoding entities: {e}")
-            
-            # Parses relationships if they are string
-            if isinstance(prompt_item.get("relationships"), str):
-                try:
-                    # Replace parentheses to prepare for safe parsing
-                    relationships_str = (
-                        prompt_item["relationships"]
-                        .replace("(", "[")
-                        .replace(")", "]")
-                        .replace("'", '"')  # Replace single quotes with double quotes for valid JSON
-                    )
-                    # Convert to JSON-compatible structure and parse
-                    relationships = json.loads(relationships_str)
-                    prompt_item["relationships"] = [tuple(rel) for rel in relationships]
-                except (json.JSONDecodeError, ValueError) as e:
-                    print(f"Error decoding relationships: {e}")        
-        return knowledge_graph
+    # This functions parses the relations columns of the knowledge graph-dictionary object in process_messages
+    def parse_data(self, output):
+        try:
+            parsed_output = json.loads(output)
+            output_data = parsed_output.get("Output", [])
+            # Extract and process each relationship
+            relationships = []
+            for relation in output_data:
+                s = relation.get("Subjekt", "")
+                p = relation.get("Predikat", "")
+                o = relation.get("Objekt", "")
+                relationships.append((s, p, o))
+
+            return relationships
+
+        except json.JSONDecodeError as e:
+            print(f"Error parsing JSON: {e}")
+            return []
 
     def process_messages(self, messages):
         knowledge_graphs = []
@@ -301,6 +307,7 @@ class LanguageToGraph:
 
             entities = self.extract_entities_from_text(message)
             print(f"Entiteter i melding {i+1}:\n{entities}\n")
+
             relationships = self.extract_relationships_from_text(message, entities)
             print(f"Relasjoner i melding {i+1}:\n{relationships}\n")
 
@@ -309,44 +316,21 @@ class LanguageToGraph:
                 "Entiteter": entities,
                 "Relasjoner": relationships,
             }
-            knowledge_graphs.append(knowledge_graph)
-
-        knowledge_graph = self.parse_data(knowledge_graphs)
-        return knowledge_graph
-    
-    def add_entities_to_graph(self, entities): # NOTE: Add the entities to the knowledge graph
-        for entity in entities["Entiteter"]:
-            entity_uri = URIRef(self.namespace[entity["Entiteter"].replace(" ", "_")])
-            entity_type = URIRef(self.namespace[entity["Type"]])
-            self.graph.add((entity_uri, RDF.type, entity_type))
-    
-    def add_relationships_to_graph(self, relationships): # NOTE: Adds the relationship in knowledge graphs
-        for rel in relationships:
-            subj = URIRef(self.namespace[rel[0].replace(" ", "_")])
-            pred = URIRef(self.namespace[rel[1].replace(" ", "_")])
-            obj = URIRef(self.namespace[rel[2].replace(" ", "_")])
-            self.graph.add((subj, pred, obj))
-
-    def create_ontology(self, knowledge_graphs):
-        for kg in knowledge_graphs:
-            entities = kg["Entiteter"]
-            relationships = kg["Relasjoner"]
-
-            self.add_entities_to_graph(entities)
-            self.add_relationships_to_graph(relationships)
+            knowledge_graphs.append((knowledge_graph, self.parse_data(knowledge_graph["Relasjoner"])))
+        return knowledge_graphs
 
 
+# NOTE: This is how an LanguageToGraph object is created. The model and API_KEY parameters are optional,
+# but you have to add API_KEY for the program to function properly. You can either directly pass your API_KEY
+# as an argument or create a new file and import the API_KEY from there. The latter is recommended.
 ltg = LanguageToGraph(model="gpt-4o-mini", api_key=openai.api_key)
 directory_path = "trafikktekster-20240814.txt"
 messages = ltg.load_msg(directory_path)
 
+# Using a small set of messages to create graphs due to scalability issues
 testset_messages = messages[5:8]
 knowledge_graphs = ltg.process_messages(testset_messages)
-print(knowledge_graphs)
 
-
+print("\n\n\n\n")
 for item in knowledge_graphs:
-    print("Meldinger:", item["Meldinger"])
-    print("Entiteter:", item["Entiteter"])
-    print("Relasjoner:", item["Relasjoner"])
-    print()
+    print(item[1], "\n\n")
