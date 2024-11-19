@@ -9,13 +9,14 @@ The goal of this project is create knowledge graphs using the OpenAI API by crea
 visualized using RDF Graphs.
 
 ### 2. Prerequisites
-In order to fully inspect there are some things you should do.
+In order to fully inspect this project, there are some things you must do.
 
-If you do not want to keep it afterwards, you should create a venv in your specified folder and do the following:
+If you do not want to keep it afterwards, you should create a virtual environment in your specified folder and do the following:
 ```
 py -m venv .example-venv
 
-source .example-venv/Scripts/activate
+source ./.example-venv/Scripts/activate # often for windows
+source ./.examlpe-venv/bin/activate # often for mac
 
 git clone https://github.com/sinsaegit/llm-kg-project.git
 
