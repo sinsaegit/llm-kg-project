@@ -1,0 +1,28 @@
+@prefix ex: <http://example.org#> .
+
+ex:Hendelse ex:har_forløp ex:Ambulanse_er_på_veg_til_Hendelsen,
+        ex:Dame_går_i_veien,
+        ex:Kvinne_ble_overtatt_av_Helsevesenet,
+        ex:Mann_ligger_på_Bakken,
+        ex:Mann_påkjørt_av_Lastebil,
+        ex:Pasient_ivaretatt_av_Personer,
+        ex:Patruljer_er_på_vei_til_steden,
+        ex:Politi_er_på_Staden,
+        ex:Politiet_er_på_stedet,
+        ex:Politiet_ferdig_på_stedet,
+        ex:Politiet_har_kontroll_på_Kvinnen ;
+    ex:har_id ex:245jjc,
+        ex:24rksz ;
+    ex:har_tid <http://example.org#2024-08-13T12:32:16.2608778+00:00>,
+        <http://example.org#2024-08-13T16:56:59.5278312+00:00> ;
+    ex:skjedde_i ex:Fotgjengerfelt ;
+    ex:skjedde_på ex:Bergen,
+        ex:Folke_Bernadottes_Vei,
+        ex:Ytrebygdsvegen .
+
+ex:Folke_Bernadottes_Vei ex:del_av ex:Fyllingsdalen .
+
+ex:Fyllingsdalen ex:del_av ex:Bergen .
+
+ex:Ytrebygdsvegen ex:del_av ex:Bergen .
+

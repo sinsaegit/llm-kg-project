@@ -1,10 +1,11 @@
 # Nessecary imports for the project
 
+import json
+
 import openai
 from constants import API_KEY
 from openai import OpenAI
 from rdflib import Graph, Namespace
-import json
 
 openai.api_key = API_KEY  # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere.
 client = OpenAI(api_key=openai.api_key)
@@ -99,19 +100,19 @@ class LanguageToGraph:
                         {"Entiteter": "Bilberger", "Type": "Service"},
                         {"Entiteter": "Politiet", "Type": "Organisasjon"}
                     ]}
-            Output
             {
             "Output": [
             {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24b43w"},
             {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-12T05:50:23.2538153+00:00"},
-            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Follesevegen, Askøy"},
-            {"Subjekt": "Hendelse", "Predikat": "har_entiteter", "Objekt": "Entiteter"},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "ankom", "Follesvegen", "Askøy"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Materielle skadar", "på", "Bilen"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Bilberger", "er", "bestilt"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Trafikken", "flyter", "greit"]}
-            ]}
+            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Follesevegen"},
+            {"Subjekt": "Follesvegen", "Predikat": "del_av", "Objekt": "Askøy"},
+            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "ankom", "Follesvegen"]},
+            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Materielle skadar", "på", "Bilen"]},
+            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Bilberger", "er", "bestilt"]},
+            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Trafikken", "flyter", "greit"]}
+            ]}"
 
+            
 
             Input: [Melding: "24c8x7 (Fjøsanger, Bergen, 2024-08-11T08:18:25.5956991+00:00): Kl. 08:35 Melding om kjøring i trolig ruspåvirket tilstand. Kjørte bl.a. på felgen. Politiet stanset kjøretøy i sidegate til Fjøsangervegen. To personer i bilen. Begge fremstår ruset. Fører fremstilt for blodprøve på Bergen Legevakt. Sak opprettet.",
                     Entiteter:{
@@ -127,21 +128,25 @@ class LanguageToGraph:
                         {"Entiteter": "To personer", "Type": "Personer"},
                         {"Entiteter": "Bergen Legevakt", "Type": "Sted"}
                     ]}
-            
             Output:
-            {
-            "Output": [
-            {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24c8x7"},
-            {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-11T08:18:25.5956991+00:00"},
-            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Fjøsanger, Bergen"},
-            {"Subjekt": "Hendelse", "Predikat": "har_entiteter", "Objekt": "Entiteter"},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "stanset", "Kjøretøy", "i sidegate til Fjøsangervegen"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Kjøring i ruspåvirket tilstand", "inkluderte", "Felgen"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["To personer", "fremstår som", "ruset"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Fører", "fremstilt for blodprøve", "på Bergen Legevakt"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "opprettet", "Sak"]}
-            ]}
+                {
+                "Output": [
+                {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24c8x7"},
+                {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-11T08:18:25.5956991+00:00"},
+                {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Fjøsanger"},
+                {"Subjekt": "Fjøsanger", "Predikat": "del_av", "Objekt": "Bergen"},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "stanset", "Kjøretøy"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Kjøretøy", "stanset_i", "Sidegate"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Sidegate", "del_av", "Fjøsangervegen"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["To personer", "kjørte_på", "Felgen"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["To personer", "fremstår_som", "Ruset"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Fører", "fremstilt_for, "Blodprøve"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Fører", "del_av, "To personer"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Blodprøve", "gjennomføre_ved", "Bergen Legevakt"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "opprettet", "Sak"]}
+                ]}
 
+                
             
             Input: [Meldinger: "24w0z5 (Danmarksplass, Bergen, 2024-08-14T06:07:37.2057264+00:00): 3 biler involvert i trafikkuhell. Kun meldt om materielle skader. Skaper køer mot Bergen sør. Politiet er på vei til stedet.",
                     Entiteter:{
@@ -156,20 +161,20 @@ class LanguageToGraph:
                         {"Entiteter": "Bergen sør", "Type": "Sted"},
                         {"Entiteter": "Politiet", "Type": "Organisasjon"}
                     ]}
-        
+
             Output:
-            {
-            "Output": [
-            {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24w0z5"},
-            {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-14T06:07:37.2057264+00:00"},
-            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Danmarksplass, Bergen"},
-            {"Subjekt": "Hendelse", "Predikat": "har_entiteter", "Objekt": "Entiteter"},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["3 biler", "involvert i", "Trafikkuhell"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Trafikkuhell", "resulterte i", "Materielle skader"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Trafikkuhell", "skaper", "køer mot Bergen sør"]},
-            {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "er på vei til", "stedet"]}
-            ]}
-            """
+                {
+                "Output": [
+                {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24w0z5"},
+                {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-14T06:07:37.2057264+00:00"},
+                {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Danmarksplass, Bergen"},
+                {"Subjekt": "Danmarksplass", "Predikat": "del_av", "Objekt": "Bergen"},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["3 biler", "involvert_i", "Trafikkuhell"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Trafikkuhell", "resulterte_i", "Materielle skader"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Trafikkuhell", "skaper", "køer mot Bergen sør"]},
+                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "på_vei_til", "Trafikkuhell"]}
+                ]}
+                """
 
     # Loads different messages
     def load_msg(self, filename):
@@ -243,16 +248,17 @@ class LanguageToGraph:
                 {
                     "role": "system",
                     "content": "Du er en assistent trent til å gjennomføre Named Entity Recognition-oppgaver for Knowledge Graphs basert på meldingen og tilhørende entiteter fra meldigen.\n"
-                    "Du skal alltid produsere en hovedentitet som kan binde entietene. Eksempelvis er hele meldingen en hendelse. Identifiser en ID-kode om det er mulig.\n"
+                    "Du skal alltid produsere en hovedentitet som kan binde entietene. Eksempelvis er hele meldingen en hendelse.\n"
+                    "Identifiser en ID-kode om det er mulig.\n"
                     "Returner en dictionary som kan parses som et JSON objekt.\n"
-                    f"Her er noen few-shot eksempler: {self.few_shot_entities}\n",
+                    f"Her er noen few-shot eksempler på hvordan du finner entiteter: {self.few_shot_entities}\n",
                 },
                 {
                     "role": "user",
                     "content": (f"{self.entity_prompt}\n\n" f"Tekst:\n{text}\n\n"),
                 },
             ],
-            temperature=0.8,
+            temperature=0.5,
         )
         return completion.choices[0].message.content.strip()
 
@@ -262,9 +268,11 @@ class LanguageToGraph:
             messages=[
                 {
                     "role": "system",
-                    "content": "Du er en assistent trent til å gjennomføre Relation Extraction-oppgaver basert på en melding og entitetene du mottar, slik at du kan produsere Kunnskapsgrafer med ontolgier.\n"
-                    "Du skal alltid identifisere en ID om det finnes og hele meldingen skal være indetifsert som en hendelse. Returner som en liste som kan parses som et JSON objekt.\n"
-                    f"Her er noen few-shot eksempler: {self.few_shot_relations}",
+                    "content": "Du er en assistent trent til å gjennomføre Relation Extraction-oppgaver basert på meldingen og følgende entiteter som du mottar.\n"
+                    "Du skal alltid identifisere en ID om det finnes og hele meldingen skal være indetifsert som en hendelse.\n"
+                    "Returner som en liste som kan parses som et JSON objekt.\n"
+                    f"Her er noen few-shot eksempler på hvordan du lager grafer: {self.few_shot_relations}"
+                    "Lag sammenhengende grafer som vist i fewshot og alltid knytt ord i predikater med understrek.",
                 },
                 {
                     "role": "user",
@@ -275,7 +283,7 @@ class LanguageToGraph:
                     ),
                 },
             ],
-            temperature=0.8,
+            temperature=0.5,
         )
         return completion.choices[0].message.content.strip()
 
@@ -291,12 +299,45 @@ class LanguageToGraph:
                 p = relation.get("Predikat", "")
                 o = relation.get("Objekt", "")
                 relationships.append((s, p, o))
-
             return relationships
 
         except json.JSONDecodeError as e:
             print(f"Error parsing JSON: {e}")
             return []
+        except AttributeError as e:
+            print(f"Oops, encountered a parsing error: {e}")
+            output = "{" + output + "}"
+            parsed_output = json.loads(output)
+            output_data = parsed_output.get("Output", [])
+            relationships = []
+            for relation in output_data:
+                s = relation.get("Subjekt", "")
+                p = relation.get("Predikat", "")
+                o = relation.get("Objekt", "")
+                relationships.append((s, p, o))
+            return relationships
+
+    def serialize(self, knowledge_graphs, filename="ontology_output.ttl"):
+        for _, relationships in knowledge_graphs:
+            for subj, pred, obj in relationships:
+                subj_uri = self.namespace[subj.replace(" ", "_")]
+                pred_uri = self.namespace[pred.replace(" ", "_")]
+
+                # If the object is a list, join it into a single literal
+                if isinstance(obj, list):
+                    obj_literal = "_".join(obj).replace(" ", "_")
+                    self.graph.add((subj_uri, pred_uri, self.namespace[obj_literal]))
+                else:
+                    obj_uri = self.namespace[obj.replace(" ", "_")]
+                    self.graph.add((subj_uri, pred_uri, obj_uri))
+
+        # Serialize the populated graph
+        self.graph.serialize(destination=filename, format="turtle")
+        print(f"Ontology saved to {filename}.")
+
+    def serialize_ontology(self, filename="ontology_output.ttl"):
+        self.graph.serialize(destination=filename, format="turtle")
+        print(f"Ontology saved to {filename}.")
 
     def process_messages(self, messages):
         knowledge_graphs = []
@@ -316,20 +357,27 @@ class LanguageToGraph:
                 "Entiteter": entities,
                 "Relasjoner": relationships,
             }
-            knowledge_graphs.append((knowledge_graph, self.parse_data(knowledge_graph["Relasjoner"])))
+
+            parsed_relationships = self.parse_data(knowledge_graph["Relasjoner"])
+            knowledge_graphs.append((knowledge_graph, parsed_relationships))
+        
         return knowledge_graphs
 
 
 # NOTE: This is how an LanguageToGraph object is created. The model and API_KEY parameters are optional,
 # but you have to add API_KEY for the program to function properly. You can either directly pass your API_KEY
 # as an argument or create a new file and import the API_KEY from there. The latter is recommended.
+# It is also recommended to use a small subset of test data.
 ltg = LanguageToGraph(model="gpt-4o-mini", api_key=openai.api_key)
 directory_path = "trafikktekster-20240814.txt"
 messages = ltg.load_msg(directory_path)
 
 # Using a small set of messages to create graphs due to scalability issues
-testset_messages = messages[5:8]
+testset_messages = messages[4:8]
 knowledge_graphs = ltg.process_messages(testset_messages)
+ltg.serialize(knowledge_graphs)
+
+
 
 print("\n\n\n\n")
 for item in knowledge_graphs:
