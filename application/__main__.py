@@ -317,7 +317,7 @@ class LanguageToGraph:
                 relationships.append((s, p, o))
             return relationships
 
-    def serialize(self, knowledge_graphs, filename="ontology_output.ttl"):
+    def populate(self, knowledge_graphs, filename="ontology_output.ttl"):
         for _, relationships in knowledge_graphs:
             for subj, pred, obj in relationships:
                 subj_uri = self.namespace[subj.replace(" ", "_")]
@@ -336,7 +336,7 @@ class LanguageToGraph:
         print(f"Ontology saved to {filename}.")
 
     def serialize_ontology(self, filename="ontology_output.ttl"):
-        self.graph.serialize(destination=filename, format="turtle")
+        self.graph.populate(destination=filename, format="turtle")
         print(f"Ontology saved to {filename}.")
 
     def process_messages(self, messages):
@@ -375,7 +375,7 @@ messages = ltg.load_msg(directory_path)
 # Using a small set of messages to create graphs due to scalability issues
 testset_messages = messages[4:8]
 knowledge_graphs = ltg.process_messages(testset_messages)
-ltg.serialize(knowledge_graphs)
+ltg.populate(knowledge_graphs)
 
 
 
