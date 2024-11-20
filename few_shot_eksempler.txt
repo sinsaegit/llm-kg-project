@@ -1,0 +1,48 @@
+Eksempler til few-shot:
+
+Output:
+    {
+    "Output": [
+    {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24b43w"},
+    {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-12T05:50:23.2538153+00:00"},
+    {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Follesevegen"},
+    {"Subjekt": "Follesvegen", "Predikat": "del_av", "Objekt": "Askøy"},
+    {"Subjekt": "Politiet", "Predikat": "ankom", "Objekt":"Hendelse"},
+    {"Subjekt": "Materielle_skader", "Predikat": "på", "Objekt":"Bilen"},
+    {"Subjekt": "Bilberger", "Predikat": "bestilt_til", "Objekt": "Hendelse"},
+    {"Subjekt": "Trafikken", "Predikat": "flyter_ved", "Objekt":"Hendelse"}
+    ]}
+
+Output:
+    {
+    "Output": [
+    {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24c8x7"},
+    {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-11T08:18:25.5956991+00:00"},
+    {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Fjøsanger"},
+    {"Subjekt": "Fjøsanger", "Predikat": "del_av", "Objekt": "Bergen"},
+    {"Subjekt": "Politiet", "Predikat": "stanset", "Objekt": "Kjøretøy"},
+    {"Subjekt": "Kjøretøy", "Predikat": "stanset_i", "Objekt":"Sidegate"},
+    {"Subjekt": "Sidegate", "Predikat": "del_av", "Objekt":"Fjøsangervegen"},
+    {"Subjekt": "To personer", "Predikat": "kjørte på", "Objekt": "Felgen"},
+    {"Subjekt": "To personer", "Predikat": "fremstår_som", "Objekt":"ruset"},
+    {"Subjekt": "Fører", "Predikat": "fremstilt_for", "Objekt":"Blodprøver"},
+    {"Subjekt": "Fører", "Predikat": "del_av", "Objekt":"To personer"},
+    {"Subjekt": "Blodprøver", "Predikat": "fremstilles_ved", "Objekt":"Bergen Legevakt"},
+    {"Subjekt": "Bergen Legevakt", "Predikat":"finnes_i", "Bergen"}
+    {"Subjekt": "Politiet", "Predikat": "oppretter", "Objekt":"Sak"}
+    ]}
+
+
+
+    {
+        "Output": [
+        {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24b43w"},
+        {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-12T05:50:23.2538153+00:00"},
+        {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Follesevegen"},
+        {"Subjekt": "Follesvegen", "Predikat": "del_av", "Objekt": "Follesevegen"},
+        {"Subjekt": "Hendelse", "Predikat": "har_entiteter", "Objekt": "Entiteter"},
+        {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Politiet", "ankom", "Follesvegen", "Askøy"]},
+        {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Materielle skadar", "på", "Bilen"]},
+        {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Bilberger", "er", "bestilt"]},
+        {"Subjekt": "Hendelse", "Predikat": "del_av_forløp", "Objekt": ["Trafikken", "flyter", "greit"]}
+        ]}
