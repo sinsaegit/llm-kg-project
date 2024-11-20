@@ -1,16 +1,16 @@
 @prefix ex: <http://example.org#> .
 
-ex:Hendelse ex:har_forløp ex:112_telefoner_innmeldt_om_Dame,
-        ex:Ambulanse_på_vei_til_Hendelse,
-        ex:Dame_går_i_Veien,
+ex:Hendelse ex:har_forløp ex:112_telefoner_innkommet_om_Dame,
+        ex:Ambulanse_er_på_vei_til_Hendelse,
         ex:Kvinne_ble_overtatt_av_Helsevesenet,
         ex:Mann_ligger_på_Bakken,
         ex:Mann_påkjørt_av_Lastebil,
         ex:Pasient_ivaretatt_av_Personer,
-        ex:Patruljer_på_vei_til_Stedet,
+        ex:Patruljer_er_på_vei_til_stedet,
         ex:Politi_er_på_Staden,
-        ex:Politiet_er_ferdig_på_stedet,
-        ex:Politiet_har_kontroll_på_Kvinnen ;
+        ex:Politiet_er_på_stedet,
+        ex:Politiet_ferdig_på_stedet,
+        ex:Politiet_har_kontroll_på_kvinnen ;
     ex:har_id ex:245jjc,
         ex:24rksz ;
     ex:har_tid <http://example.org#2024-08-13T12:32:16.2608778+00:00>,

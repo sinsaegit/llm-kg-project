@@ -5,7 +5,14 @@ import json
 import openai
 from constants import API_KEY
 from openai import OpenAI
-from rdflib import Graph, Namespace
+from rdflib import Graph, Literal, Namespace
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 openai.api_key = API_KEY  # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere.
 client = OpenAI(api_key=openai.api_key)
@@ -16,8 +23,6 @@ class LanguageToGraph:
         self, model="gpt-4o-mini", api_key=None
     ):  # API_KEY is None if no key argued. The same goes for chat-4o-mini.
         self.model = model
-        self.entities = None
-        self.message = None
         if api_key:
             openai.api_key = api_key
         else:
@@ -27,16 +32,16 @@ class LanguageToGraph:
         self.graph = Graph()
         self.namespace = Namespace("http://example.org#")  # Define a namespace
         self.graph.bind("ex", self.namespace)
+        self.graph_filename = None
+        self.graph_url = "https://www.ldf.fi/service/rdf-grapher"
 
         # Standard promts that are stored in case revisions are proposed.
         self.entity_prompt = (
-            f"Dette er meldingene: {self.message}."
             "Du skal finne viktige entiteter som for eksempel: lokasjoner, hendelser, kjøretøy og mennesker med mer, fra følgende melding."
             "Forsøk å ikke bruke pronomen, men heller entitene pronomenene viser til."
             "Bare inkluder de identifsierte entitene, uten noe ekstra besvarelse."
         )
         self.relationship_prompt = (
-            f"Dette er meldingen: {self.message}. Dette er meldingens entiteter: {self.entities}."
             "Bruk meldingen og identifiserte entiteter til å avgjøre relasjoner. "
             "Formater hver enkelt relasjon som tripler/ontologier på formen (Subjekt, Predikat, Objekt)."
             "Husk at predikater skal ha underscore mellom seg. "
@@ -290,8 +295,13 @@ class LanguageToGraph:
     # This functions parses the relations columns of the knowledge graph-dictionary object in process_messages
     def parse_data(self, output):
         try:
+            # If output is already a list of dictionaries, process it directly
+            if isinstance(output, str) and output.strip().startswith("["):
+                output = f'{{"Output": {output}}}'
+
             parsed_output = json.loads(output)
             output_data = parsed_output.get("Output", [])
+
             # Extract and process each relationship
             relationships = []
             for relation in output_data:
@@ -301,42 +311,26 @@ class LanguageToGraph:
                 relationships.append((s, p, o))
             return relationships
 
-        except json.JSONDecodeError as e:
-            print(f"Error parsing JSON: {e}")
+        except (json.JSONDecodeError, AttributeError) as e:
+            print(f"Oops, encountered a parsing error: {e}. Output was: {output}")
             return []
-        except AttributeError as e:
-            print(f"Oops, encountered a parsing error: {e}")
-            output = "{" + output + "}"
-            parsed_output = json.loads(output)
-            output_data = parsed_output.get("Output", [])
-            relationships = []
-            for relation in output_data:
-                s = relation.get("Subjekt", "")
-                p = relation.get("Predikat", "")
-                o = relation.get("Objekt", "")
-                relationships.append((s, p, o))
-            return relationships
+
+    def process_object(self, obj):
+        if isinstance(obj, list):
+            return self.namespace["_".join(obj).replace(" ", "_")]
+        elif isinstance(obj, str):
+            return self.namespace[obj.replace(" ", "_")]
+        return Literal(obj)
 
     def populate(self, knowledge_graphs, filename="ontology_output.ttl"):
         for _, relationships in knowledge_graphs:
             for subj, pred, obj in relationships:
                 subj_uri = self.namespace[subj.replace(" ", "_")]
                 pred_uri = self.namespace[pred.replace(" ", "_")]
-
-                # If the object is a list, join it into a single literal
-                if isinstance(obj, list):
-                    obj_literal = "_".join(obj).replace(" ", "_")
-                    self.graph.add((subj_uri, pred_uri, self.namespace[obj_literal]))
-                else:
-                    obj_uri = self.namespace[obj.replace(" ", "_")]
-                    self.graph.add((subj_uri, pred_uri, obj_uri))
-
-        # Serialize the populated graph
+                obj_uri = self.process_object(obj)
+                self.graph.add((subj_uri, pred_uri, obj_uri))
         self.graph.serialize(destination=filename, format="turtle")
-        print(f"Ontology saved to {filename}.")
-
-    def serialize_ontology(self, filename="ontology_output.ttl"):
-        self.graph.populate(destination=filename, format="turtle")
+        self.graph_filename = filename
         print(f"Ontology saved to {filename}.")
 
     def process_messages(self, messages):
@@ -360,24 +354,68 @@ class LanguageToGraph:
 
             parsed_relationships = self.parse_data(knowledge_graph["Relasjoner"])
             knowledge_graphs.append((knowledge_graph, parsed_relationships))
-        
+
         return knowledge_graphs
+
+    def setup_selenium(self):
+        chrome_options = Options()
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--start-maximized")
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        return driver
+
+    def view_graph(
+        self,
+        text_xpath="//textarea[@name='rdf']",
+        visualize_xpath="//input[@type='submit' and @value='Visualize']",
+    ):
+        try:
+            driver = self.setup_selenium()
+            driver.get(self.graph_url)
+            with open(self.graph_filename, "r", encoding="utf-8") as file:
+                content = file.read()
+
+            text_box = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, text_xpath))
+            )
+            text_box.clear()
+            text_box.send_keys(content)
+
+            visualize = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, visualize_xpath))
+            )
+            visualize.click()
+
+            while True:
+                user = str(input("Do you want quit [y/n]:\t"))
+                if not user == "y" or "n":
+                    str(input("Only use y or n:\n"))
+                match user:
+                    case "y":
+                        break
+                    case "n":
+                        continue
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        finally:
+            if driver:  # Ensure driver.quit() is only called if driver is initialized
+                driver.quit()
 
 
 # NOTE: This is how an LanguageToGraph object is created. The model and API_KEY parameters are optional,
 # but you have to add API_KEY for the program to function properly. You can either directly pass your API_KEY
 # as an argument or create a new file and import the API_KEY from there. The latter is recommended.
 # It is also recommended to use a small subset of test data.
-ltg = LanguageToGraph(model="gpt-4o-mini", api_key=openai.api_key)
-directory_path = "trafikktekster-20240814.txt"
-messages = ltg.load_msg(directory_path)
+ltg = LanguageToGraph(model="gpt-4o-mini", api_key=openai.api_key)  # Initalizing class object
+directory_path = "trafikktekster-20240814.txt"  # Adding test set
+messages = ltg.load_msg(directory_path)  # Processing messages
 
-# Using a small set of messages to create graphs due to scalability issues
-testset_messages = messages[4:8]
-knowledge_graphs = ltg.process_messages(testset_messages)
-ltg.populate(knowledge_graphs)
-
-
+testset_messages = messages[4:8]  # Using a small set of messages to create graphs due to scalability issues
+knowledge_graphs = ltg.process_messages(testset_messages)  # Processing messages in prompt and parsing output
+ltg.populate(knowledge_graphs)  # Populating graph
+ltg.view_graph()
 
 print("\n\n\n\n")
 for item in knowledge_graphs:
