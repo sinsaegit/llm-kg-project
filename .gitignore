@@ -14,3 +14,7 @@ __pycache__/
 .vscode/
 
 application/constants.py
+
+constants.py
+
+candidate_109/
