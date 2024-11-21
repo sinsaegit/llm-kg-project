@@ -7,7 +7,6 @@ OpenAI's API contains a great system for adding context and n-shot strategies to
 This has shown to be a great tool compared to more resource demanding tasks such as fine-tuning. 
 The goal of this project is create knowledge graphs using the OpenAI API by creating standardized outputs that can be machine interpreted and later on,
 visualized using RDF Graphs.
-The use of evaluation functions were subsituted with use of the JSON library to decrease the risk of adversarial use. 
 
 ### 2. Prerequisites
 In order to fully inspect this project, there are some things you must do.
@@ -16,13 +15,21 @@ If you do not want to keep it afterwards, you should create a virtual environmen
 ```
 py -m venv .example-venv
 
-source ./.example-venv/Scripts/activate     # often for windows
-source ./.examlpe-venv/bin/activate     # often for mac
+source ./.example-venv/Scripts/activate # often for windows
+source ./.examlpe-venv/bin/activate # often for mac
 
 git clone https://github.com/sinsaegit/llm-kg-project.git
 
 pip install -r requirements.txt 
 ```
 
+If you open this project from a download then you should do the following in stead: 
+```
+py -m venv .example-venv
 
+source ./.example-venv/Scripts/activate # often for windows
+source ./.examlpe-venv/bin/activate # often for mac
+
+pip install -r requirements.txt 
+```
 
