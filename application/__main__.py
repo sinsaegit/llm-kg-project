@@ -474,5 +474,5 @@ testset_messages = messages[30:35]  # Using a small set of messages to create gr
 knowledge_graphs = ltg.process_messages(testset_messages)  # Processing messages in prompt and parsing output
 ltg.populate(knowledge_graphs)  # Populating the RDF graph
 ltg.view_graph() # Visualizes graph with online tool, sit back and relax
-prompt_example = messages[:3] # Adding context to eva
-ltg.metric_evaluation(prompt_example, knowledge_graphs)
+prompt_example = messages[:3] # Adding context to evaluation
+ltg.metric_evaluation(prompt_example, knowledge_graphs) 
