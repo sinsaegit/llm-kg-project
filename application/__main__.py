@@ -1,7 +1,7 @@
+
 # Nessecary imports for the project
 
 import json
-
 import openai
 from constants import API_KEY
 from openai import OpenAI
@@ -13,6 +13,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from rouge_score import rouge_scorer
+
+
 
 openai.api_key = API_KEY  # NOTE: Change this API_KEY to your own as the original key is stored safely elsewhere.
 client = OpenAI(api_key=openai.api_key)
@@ -107,14 +111,13 @@ class LanguageToGraph:
                     ]}
             {
             "Output": [
-            {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24b43w"},
-            {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-12T05:50:23.2538153+00:00"},
-            {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Follesevegen"},
-            {"Subjekt": "Follesvegen", "Predikat": "del_av", "Objekt": "Askøy"},
-            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "ankom", "Follesvegen"]},
-            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Materielle skadar", "på", "Bilen"]},
-            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Bilberger", "er", "bestilt"]},
-            {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Trafikken", "flyter", "greit"]}
+            {"Subjekt": "24b43w", "Predikat": "har_tid", "Objekt": "2024-08-12T05:50:23.2538153+00:00"},
+            {"Subjekt": "24b43w", "Predikat": "skjedde_på", "Objekt": "follesevegen"},
+            {"Subjekt": "follesvegen", "Predikat": "del_av", "Objekt": "askøy"},
+            {"Subjekt": "24b43w", "Predikat": "har_forløp", "Objekt": ["politiet", "ankom", "follesvegen"]},
+            {"Subjekt": "24b43w", "Predikat": "har_forløp", "Objekt": ["materielle skadar", "på", "bilen"]},
+            {"Subjekt": "24b43w", "Predikat": "har_forløp", "Objekt": ["bilberger", "er", "bestilt"]},
+            {"Subjekt": "24b43w", "Predikat": "har_forløp", "Objekt": ["trafikken", "flyter", "greit"]}
             ]}"
 
             
@@ -136,19 +139,18 @@ class LanguageToGraph:
             Output:
                 {
                 "Output": [
-                {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24c8x7"},
-                {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-11T08:18:25.5956991+00:00"},
-                {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Fjøsanger"},
-                {"Subjekt": "Fjøsanger", "Predikat": "del_av", "Objekt": "Bergen"},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "stanset", "Kjøretøy"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Kjøretøy", "stanset_i", "Sidegate"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Sidegate", "del_av", "Fjøsangervegen"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["To personer", "kjørte_på", "Felgen"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["To personer", "fremstår_som", "Ruset"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Fører", "fremstilt_for, "Blodprøve"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Fører", "del_av, "To personer"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Blodprøve", "gjennomføre_ved", "Bergen Legevakt"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "opprettet", "Sak"]}
+                {"Subjekt": "24c8x7", "Predikat": "har_tid", "Objekt": "2024-08-11T08:18:25.5956991+00:00"},
+                {"Subjekt": "24c8x7", "Predikat": "skjedde_på", "Objekt": "fjøsanger"},
+                {"Subjekt": "fjøsanger", "Predikat": "del_av", "Objekt": "bergen"},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["politiet", "stanset", "kjøretøy"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["kjøretøy", "stanset_i", "sidegate"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["sidegate", "del_av", "fjøsangervegen"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["to personer", "kjørte_på", "felgen"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["to personer", "fremstår_som", "ruset"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["fører", "fremstilt_for, "blodprøve"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["fører", "del_av, "to personer"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["blodprøve", "gjennomføre_ved", "bergen Legevakt"]},
+                {"Subjekt": "24c8x7", "Predikat": "har_forløp", "Objekt": ["politiet", "opprettet", "Sak"]}
                 ]}
 
                 
@@ -170,14 +172,13 @@ class LanguageToGraph:
             Output:
                 {
                 "Output": [
-                {"Subjekt": "Hendelse", "Predikat": "har_id", "Objekt": "24w0z5"},
-                {"Subjekt": "Hendelse", "Predikat": "har_tid", "Objekt": "2024-08-14T06:07:37.2057264+00:00"},
-                {"Subjekt": "Hendelse", "Predikat": "skjedde_på", "Objekt": "Danmarksplass, Bergen"},
-                {"Subjekt": "Danmarksplass", "Predikat": "del_av", "Objekt": "Bergen"},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["3 biler", "involvert_i", "Trafikkuhell"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Trafikkuhell", "resulterte_i", "Materielle skader"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Trafikkuhell", "skaper", "køer mot Bergen sør"]},
-                {"Subjekt": "Hendelse", "Predikat": "har_forløp", "Objekt": ["Politiet", "på_vei_til", "Trafikkuhell"]}
+                {"Subjekt": "24w0z5", "Predikat": "har_tid", "Objekt": "2024-08-14T06:07:37.2057264+00:00"},
+                {"Subjekt": "24w0z5", "Predikat": "skjedde_på", "Objekt": "danmarksplass, bergen"},
+                {"Subjekt": "danmarksplass", "Predikat": "del_av", "Objekt": "bergen"},
+                {"Subjekt": "24w0z5", "Predikat": "har_forløp", "Objekt": ["3 biler", "involvert_i", "trafikkuhell"]},
+                {"Subjekt": "24w0z5", "Predikat": "har_forløp", "Objekt": ["trafikkuhell", "resulterte_i", "materielle skader"]},
+                {"Subjekt": "24w0z5", "Predikat": "har_forløp", "Objekt": ["trafikkuhell", "skaper", "køer mot Bergen sør"]},
+                {"Subjekt": "24w0z5", "Predikat": "har_forløp", "Objekt": ["politiet", "på_vei_til", "trafikkuhell"]}
                 ]}
                 """
 
@@ -189,15 +190,15 @@ class LanguageToGraph:
                 content = file.read().split("\n")
                 for line in content:
                     if line.strip():
-                        messages.append(line.strip())
+                        messages.append(line.strip().lower())
 
         if "trafikktekster" not in filename:
-            self.entity_prompt = self.revise_Entiteter_prompt(messages)
-            self.relationship_prompt = self.revise_Entiteter_prompt(messages)
+            self.entity_prompt = self.revise_entity_prompt(messages)
+            self.relationship_prompt = self.revise_relationship_prompt(messages)
 
         return messages
 
-    def revise_Entiteter_prompt(self, messages):
+    def revise_entity_prompt(self, messages):
         sample_messages = messages[:3]
 
         completion = client.chat.completions.create(
@@ -216,10 +217,10 @@ class LanguageToGraph:
                     ),
                 },
             ],
-            temperature=0.7,
+            temperature=0.8,
         )
 
-        # Update the Entiteter prompt with GPT response
+        # Update the entities prompt with GPT response
         self.entity_prompt = completion.choices[0].message.content.strip()
 
     def revise_relationship_prompt(self, messages):
@@ -241,7 +242,7 @@ class LanguageToGraph:
                     ),
                 },
             ],
-            temperature=0.7,
+            temperature=0.8,
         )
 
         self.relationship_prompt = completion.choices[0].message.content.strip()
@@ -389,19 +390,76 @@ class LanguageToGraph:
             visualize.click()
 
             while True:
-                user = str(input("Do you want quit [y/n]:\t"))
-                if not user == "y" or "n":
-                    str(input("Only use y or n:\n"))
+                user = input("Do you want to quit [y/n]:\t").strip().lower() 
+                if user not in ("y", "n"): 
+                    print("Only use 'y' or 'n'. Please try again.")
+                    continue 
+
                 match user:
                     case "y":
+                        print("Quitting...")
+                        driver.quit()
                         break
                     case "n":
                         continue
         except Exception as e:
             print(f"An error occurred: {e}")
         finally:
-            if driver:  # Ensure driver.quit() is only called if driver is initialized
+            if driver: 
                 driver.quit()
+    
+    def message_generation(self, examples, triples):
+  
+        triples_text = "\n".join([f"{subj} {pred.replace('_', ' ')} {obj}" for subj, pred, obj in triples])
+        prompt = (
+            "Du er en språkmodell trent til å generere tekstgjengivelser fra en liste med tripler. Her er triplene:\n\n"
+            f"{triples_text}. Slik ser noen meldinger ut: {examples} \n\n"
+            "Vennligst gengi teksten i form av konsise meldinger med godflyt."
+        )
+
+        completion = client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": "Du er en assistent som skal genenerere tekst fra RDF tripler.\n"
+                "Meldingene du skal replikere ser slik ut: "},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.5,
+        )
+        return completion.choices[0].message.content.strip()
+
+    def metric_evaluation(self, examples, knowledge_graphs):
+        print("\n--- BLEU Evaluation Results ---")
+        smoothing_function = SmoothingFunction().method1
+        rouge_scorer_obj = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
+
+        for i, (kg_data, relationships) in enumerate(knowledge_graphs):
+            original_message = kg_data["Meldinger"]
+
+            # Generate a message using OpenAI from the triples
+            generated_message = self.message_generation(examples, relationships)
+
+            # Tokenize messages
+            reference = original_message.lower().split()
+            candidate = generated_message.lower().split()
+
+            # Calculate BLEU scorey
+            bleu_score = sentence_bleu([reference], candidate, smoothing_function=smoothing_function)
+            rouge_scores = rouge_scorer_obj.score(original_message, generated_message)
+            rouge1 = rouge_scores['rouge1'].fmeasure
+            rouge2 = rouge_scores['rouge2'].fmeasure
+            rougeL = rouge_scores['rougeL'].fmeasure
+
+
+            print(f"Evaluating Message {i+1}:")
+            print("--------------------------------")
+            print(f"  - Original Message: {original_message}\n")
+            print(f"  - Generated Message: {generated_message}\n")
+            print(f"  - BLEU Score: {bleu_score:.4f}")
+            print(f"  - ROUGE-1 F1 Score: {rouge1:.4f}")
+            print(f"  - ROUGE-2 F1 Score: {rouge2:.4f}")
+            print(f"  - ROUGE-L F1 Score: {rougeL:.4f}\n")
+    
 
 
 # NOTE: This is how an LanguageToGraph object is created. The model and API_KEY parameters are optional,
@@ -412,11 +470,9 @@ ltg = LanguageToGraph(model="gpt-4o-mini", api_key=openai.api_key)  # Initalizin
 directory_path = "trafikktekster-20240814.txt"  # Adding test set
 messages = ltg.load_msg(directory_path)  # Processing messages
 
-testset_messages = messages[4:8]  # Using a small set of messages to create graphs due to scalability issues
+testset_messages = messages[30:35]  # Using a small set of messages to create graphs due to scalability issues
 knowledge_graphs = ltg.process_messages(testset_messages)  # Processing messages in prompt and parsing output
-ltg.populate(knowledge_graphs)  # Populating graph
-ltg.view_graph()
-
-print("\n\n\n\n")
-for item in knowledge_graphs:
-    print(item[1], "\n\n")
+ltg.populate(knowledge_graphs)  # Populating the RDF graph
+ltg.view_graph() # Visualizes graph with online tool, sit back and relax
+prompt_example = messages[:3] # Adding context to eva
+ltg.metric_evaluation(prompt_example, knowledge_graphs)
